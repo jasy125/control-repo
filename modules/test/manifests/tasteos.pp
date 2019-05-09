@@ -36,13 +36,6 @@ class test::tasteos (
 
   $destination_dir = "${script_dir}/tos";
 
-  exec { "mkdir -p -m 755 ${destination_dir}":
-    creates => $destination_dir,
-    umask   => '026',
-  }
-
-
-
   exec { 'taste_os register':
       command   => "${destination_dir}/taste_os.sh -c ${destination_dir}/config.sh --mode reg --path ${destination_dir}",
       cwd       => $destination_dir,
