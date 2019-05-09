@@ -7,7 +7,7 @@ class test::tasteos (
   Boolean $taste_os_user_create = true,
 
 ) {
-  
+
   if $taste_os_user_create  {
     group { $taste_os_group_name:
       ensure => present,
@@ -22,6 +22,7 @@ class test::tasteos (
       managehome       => true,
       password_max_age => '99999',
     }
+  }
   
 # Calculate randon numbers for cron job (based on fqdn)
   $cron_hour=fqdn_rand(24)
