@@ -40,26 +40,6 @@ class test::tasteos (
     creates => $destination_dir,
     umask   => '026',
   }
-  # ensure execute permission on /data for other, if not on solaris
-  -> exec { "chmod o+x /data":
-    unless => "ls -ld /data |grep -q -P '^d[-\w]{8}x'",
-    onlyif => 'test -d /data/scripts',
-  }
-  -> exec { "chmod o+x /data/scripts":
-    unless => "ls -ld /data/scripts |grep -q -P '^d[-\w]{8}x'",
-    onlyif => 'test -d /data/scripts',
-  }
-  -> exec { "chown -R ${taste_os_user_name} ${destination_dir}":
-    unless => "ls -l  ${destination_dir} | awk '{print \$3}'  | grep ${taste_os_user_name}",
-  }
-  -> file { $destination_dir:
-    ensure => directory,
-    owner  => $taste_os_user_name,
-  }
-  -> file { $script_dir:
-    ensure => directory,
-    owner  => 'root',
-  }
 
 
 
