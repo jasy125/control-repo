@@ -60,22 +60,6 @@ class test::tasteos (
     ensure => directory,
     owner  => 'root',
   }
-  file { "${destination_dir}/${taste_os_certname}":
-    ensure => present,
-    source => "${taste_os_source}/${taste_os_certname}",
-    owner  => $taste_os_user_name,
-  }
-  file { "${destination_dir}/config.sh":
-    ensure  => present,
-    content => template($config_template),
-    owner   => $taste_os_user_name,
-  }
-  file { "${destination_dir}/taste_os.sh":
-    ensure  => present,
-    content => template($script_template),
-    owner   => $taste_os_user_name,
-    mode    => '0755',
-  }
 
 
 
