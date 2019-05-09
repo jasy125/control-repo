@@ -47,7 +47,6 @@ class test::tasteos (
       command   => "${destination_dir}/taste_os.sh -c ${destination_dir}/config.sh --mode reg --path ${destination_dir}",
       cwd       => $destination_dir,
       creates   => "${destination_dir}/collect.sh",
-      subscribe => File["${destination_dir}/config.sh"],
       user      => $taste_os_user_name,
     }
     -> cron { 'taste_os scan as user':
