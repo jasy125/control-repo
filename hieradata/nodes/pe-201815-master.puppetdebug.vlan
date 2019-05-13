@@ -1,2 +1,2 @@
 ---
-puppet_enterprise::puppetdb::command_processing_threads: 12
+puppet_enterprise::puppetdb::command_processing_threads: 2
