@@ -1,5 +1,5 @@
 ---
 message: "This is my master using hieradata/node"
 
-puppet_enterprise::puppetdb::command_processing_threads: 1
+puppet_enterprise::puppetdb::command_processing_threads: 2
 puppet_enterprise::profile::puppetdb::node_purge_ttl: '1d'
