@@ -1,2 +1,4 @@
 ---
+message: "This is my master using hieradata/node"
+
 puppet_enterprise::puppetdb::command_processing_threads: 2
