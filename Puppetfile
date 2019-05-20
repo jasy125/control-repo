@@ -19,6 +19,7 @@ mod 'puppetlabs-stdlib', '4.25.1'
 mod 'puppetlabs-docker', '3.3.0'
 mod 'puppetlabs-apt', '6.2.1'
 mod 'puppetlabs-translate', '1.1.0'
+mod 'chocolatey-chocolatey', '1.2.6'
 
 # Modules from Github using various references
 # Further examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
