@@ -1,7 +1,7 @@
 class chocopackages::installfirefox () {
 
     package { 'firefox':
-      ensure   => installed,
+      ensure   => latest,
       provider => 'chocolatey',
     }
 }
