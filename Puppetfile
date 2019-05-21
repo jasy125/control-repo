@@ -20,12 +20,17 @@ mod 'puppetlabs-docker', '3.3.0'
 mod 'puppetlabs-apt', '6.2.1'
 mod 'puppetlabs-translate', '1.1.0'
 
+#windows mods
 mod 'puppetlabs-chocolatey', '3.3.0'
 mod 'puppetlabs-registry', '2.1.0'
 mod 'puppetlabs-powershell', '2.3.0'
 mod 'puppetlabs-windows', '6.1.0'
 mod 'puppetlabs-win_desktop_shortcut', '0.0.4'
 mod 'puppetlabs-acl', '2.1.0'
+
+#plex mods linux
+mod 'WhatsARanjit-plexmediaserver', '2.2.0'
+mod 'nanliu-staging', '1.0.3'
 
 # Modules from Github using various references
 # Further examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples

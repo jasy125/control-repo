@@ -1,4 +1,4 @@
-class linux::base {
+class linux::linuxbase {
   package {'mlocate':
     ensure =>installed,
   }
