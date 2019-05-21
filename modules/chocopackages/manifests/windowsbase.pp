@@ -63,7 +63,7 @@ class chocopackages::windowsbase {
         permissions => [
           {identity => 'Administrator', rights => ['write','read','execute']}
         ],
-        owner => 'Administrators'
+        owner => 'Administrators',
         group => 'Users',
         inherit_parent_permissions => false,
     }   
