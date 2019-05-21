@@ -48,9 +48,23 @@ class chocopackages::windowsbase {
             ensure  => present,
             content => "[InternetShortcut]\nURL=http://puppetlabs.com",
          }
-         
+
     file { "${win_common_desktop_directory}\\BBC.URL":
             ensure  => present,
             content => "[InternetShortcut]\nURL=http://bbc.com",
-         }     
+         }
+
+    file { 'C:/newfile.txt': 
+        ensure => present,
+        content => "my text file",
+    }
+    acl {'c:/newfile':
+        purge => true,
+        permissions => [
+          {identity => 'Administrator', rights => ['write','read','execute']}
+        ],
+        owner => 'Administrators'
+        group => 'Users',
+        inherit_parent_permissions => false,
+    }   
 }
