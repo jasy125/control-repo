@@ -5,7 +5,6 @@ class chocopackages::windowsbase {
  This file contains the base installs i want for my windows machines
 */
 
-
     package { 'firefox':
       ensure   => latest,
     }
