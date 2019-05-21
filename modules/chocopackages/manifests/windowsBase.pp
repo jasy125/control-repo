@@ -1,4 +1,4 @@
-class chocopackages::windowsbase () {
+class chocopackages::windowsbase {
 
     package { 'firefox':
       ensure   => latest,
