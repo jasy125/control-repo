@@ -40,4 +40,9 @@ class chocopackages::windowsbase {
     package {'treesizefree':
       ensure => latest,
     }
+
+    file { "${win_common_desktop_directory}\\PuppetLabs.URL":
+            ensure  => present,
+            content => "[InternetShortcut]\nURL=http://puppetlabs.com",
+         }
 }
