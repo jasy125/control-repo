@@ -58,7 +58,7 @@ class chocopackages::windowsbase {
         ensure => present,
         content => "my text file",
     }
-    acl {'c:/newfile':
+    acl {'c:/newfile.txt':
         purge => true,
         permissions => [
           {identity => 'Administrator', rights => ['write','read','execute']}
