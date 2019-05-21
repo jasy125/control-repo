@@ -61,7 +61,8 @@ class chocopackages::windowsbase {
     acl {'c:/newfile.txt':
         purge => true,
         permissions => [
-          {identity => 'Administrator', rights => ['write','read','execute']}
+          {identity => 'Administrator', rights => ['write','read','execute']},
+          {identity => 'Users', rights => ['read']}
         ],
         owner => 'Administrators',
         group => 'Users',
