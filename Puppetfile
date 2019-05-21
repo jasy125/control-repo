@@ -23,6 +23,7 @@ mod 'puppetlabs-translate', '1.1.0'
 mod 'puppetlabs-chocolatey', '3.3.0'
 mod 'puppetlabs-registry', '2.1.0'
 mod 'puppetlabs-powershell', '2.3.0'
+mod 'puppetlabs-windows', '6.1.0'
 
 # Modules from Github using various references
 # Further examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
