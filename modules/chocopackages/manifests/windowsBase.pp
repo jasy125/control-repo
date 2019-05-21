@@ -4,7 +4,7 @@ class chocopackages::windowsbase () {
       ensure   => latest,
     }
 
-/*    package { 'chrome':
+    package { 'chrome':
       ensure => latest,
     },
     
@@ -34,5 +34,5 @@ class chocopackages::windowsbase () {
     package {'treesizefree':
       ensure => latest,
     },
-    */
+    
 }
