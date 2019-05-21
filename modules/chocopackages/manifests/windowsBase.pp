@@ -2,7 +2,7 @@ class chocopackages::windowsbase {
 
     package { 'firefox':
       ensure   => latest,
-    },
+    }
 /*
     package { 'chrome':
       ensure => latest,
