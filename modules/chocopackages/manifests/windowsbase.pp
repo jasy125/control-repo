@@ -1,7 +1,17 @@
 class chocopackages::windowsbase {
 
+/*   
+ Windows Base 
+ This file contains the base installs i want for my windows machines
+*/
+
+
     package { 'firefox':
       ensure   => latest,
+    }
+
+    package { 'googlechrome':
+      ensure => latest,
     }
 
     package { '7zip':
@@ -31,13 +41,4 @@ class chocopackages::windowsbase {
     package {'treesizefree':
       ensure => latest,
     }
-    
- /*   
-    
-   package { 'chrome':
-      ensure => latest,
-    }
- 
-
-    */
 }
