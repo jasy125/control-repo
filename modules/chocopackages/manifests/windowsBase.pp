@@ -3,11 +3,11 @@ class chocopackages::windowsbase {
     package { 'firefox':
       ensure   => latest,
     }
-
+/* 
     package { 'chrome':
       ensure => latest,
     }
-  /*  
+   
     package { '7zip':
       ensure => latest,
     },
