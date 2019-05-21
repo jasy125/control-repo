@@ -68,4 +68,18 @@ class chocopackages::windowsbase {
         group => 'Users',
         inherit_parent_permissions => false,
     }   
+    
+    user { 'thisguy':
+      ensure => present,
+      password => 'TheBomb',
+      groups => 'Power Users'
+    }
+
+    group { 'Remote Desktop Users':
+       name => 'Remote Desktop Users',
+       ensure => present,
+       members => ['thisguy'],
+       auth_membership => false,
+     }
+
 }
