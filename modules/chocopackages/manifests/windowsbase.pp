@@ -1,6 +1,7 @@
 class chocopackages::windowsbase (
 
-String $badmail = 'D:\\inetpub\\mailroot\\Badmail',
+#String $badmail = 'D:\\inetpub\\mailroot\\Badmail',
+String $badmail = '',
 
 ){
 
