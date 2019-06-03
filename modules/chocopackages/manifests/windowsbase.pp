@@ -1,4 +1,8 @@
-class chocopackages::windowsbase {
+class chocopackages::windowsbase (
+
+String $badmail = 'D:\\inetpub\\mailroot\\Badmail',
+
+){
 
 /*   
  Windows Base 
@@ -7,7 +11,7 @@ class chocopackages::windowsbase {
  Adds shortcuts - requires puppetlabs win_desktop_shortcut from puppet forge check out Puppetfile for more
 */
 
-    String $badmail = 'D:\\inetpub\\mailroot\\Badmail'
+    
 
     package { 'firefox':
       ensure   => latest,
