@@ -84,7 +84,7 @@ class chocopackages::windowsbase {
        auth_membership => false,
      }
 
-     registry_key { 'HKLM\\Software\\Wow6432Node\\Interwoven\\Worksite\\imEmailSvcBad Directory': 
+     registry_value { 'HKLM\\Software\\Wow6432Node\\Interwoven\\Worksite\\imEmailSvcBad Directory': 
         ensure => present,
         type => string, 
         data => "${badmail}", 
