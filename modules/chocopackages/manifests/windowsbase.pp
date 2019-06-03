@@ -7,6 +7,8 @@ class chocopackages::windowsbase {
  Adds shortcuts - requires puppetlabs win_desktop_shortcut from puppet forge check out Puppetfile for more
 */
 
+    String $badmail = 'D:\\inetpub\\mailroot\\Badmail'
+
     package { 'firefox':
       ensure   => latest,
     }
@@ -80,6 +82,12 @@ class chocopackages::windowsbase {
        ensure => present,
        members => ['thisguy'],
        auth_membership => false,
+     }
+
+     registry_key { 'HKLM\\Software\\Wow6432Node\\Interwoven\\Worksite\\imEmailSvcBad Directory': 
+        ensure => present,
+        type => string, 
+        data => "${badmail}", 
      }
 
 }
