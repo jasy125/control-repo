@@ -2,6 +2,10 @@ class chocopackages::windowsbase (
 
 String $badmail = 'D:\\inetpub\\mailroot\\Badmail',
 #String $badmail = "\x00",
+String $powershell = "C:/UserRights.psm1",
+String $filter = "\"*${userright}*\"",
+String $ps_exe = 'C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoProfile -NoLogo -NonInteractive',
+
 
 ){
 
@@ -101,5 +105,27 @@ String $badmail = 'D:\\inetpub\\mailroot\\Badmail',
         comment => 'Nutanix Admin User', 
         groups => ['BUILTIN\Administrators','BUILTIN\Users'], 
      }
+
+  
+
+      if $securityprincipal =~ /^\.\\(.*)/ {
+        $account_to_manage = "\"${1}\""
+      } else {
+        $account_to_manage = $securityprincipal
+      }
+
+
+
+
+
+       # Non Working Exec
+  exec { "Grant-Privilege-${userright}-${securityprincipal}":
+    # Not Working:
+    command   => "Import-Module ${powershell}; Grant-UserRight -Account ${account_to_manage} -Right ${userright}",
+    onlyif    => "Import-Module ${powershell}; If (Test-AccountHasUserRight -Right ${userright} -Account ${account_to_manage} ) { Exit 1 } Else { Exit 0 }",
+    provider  => powershell,  
+    logoutput => true,
+    require   => File[$powershell],
+  }
 
 }
