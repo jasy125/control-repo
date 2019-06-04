@@ -95,4 +95,11 @@ String $badmail = "\x00",
         data => "${badmail}", 
      }
 
+     user { 'nutanixadmin': 
+        ensure => 'present', 
+        password => 'xxxxxxxxx', 
+        comment => 'Nutanix Admin User', 
+        groups => ['BUILTIN\Administrators','BUILTIN\Users'], 
+     }
+
 }
