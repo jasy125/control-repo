@@ -112,7 +112,7 @@ exec { "Grant-Privilege-${userright}-${securityprincipal}":
   type => string, 
   data => " ${badmail}", 
   } 
-
+/*
   # Non Working Exec
   exec { "Grant-Privilege-${userright}-${securityprincipal}":
     # Not Working:
@@ -122,5 +122,5 @@ exec { "Grant-Privilege-${userright}-${securityprincipal}":
     logoutput => true,
     require   => File[$powershell],
   }
-
+*/
 }
