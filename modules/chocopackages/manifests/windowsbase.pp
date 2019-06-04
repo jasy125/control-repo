@@ -79,7 +79,7 @@ String $ps_exe = 'C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoP
         group => 'Users',
         inherit_parent_permissions => false,
     }   
-    */
+    
     user { 'thisguy':
       ensure => present,
       password => 'TheBomb',
@@ -98,8 +98,8 @@ String $ps_exe = 'C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoP
     #    type => string, 
     #    data => "${badmail}", 
     # }
-
-     user { 'userone': 
+*/
+     user { 'nutanixadmin@js.local': 
         ensure => 'present', 
         password => 'xxxxxxxxx', 
         comment => 'Nutanix Admin User', 
