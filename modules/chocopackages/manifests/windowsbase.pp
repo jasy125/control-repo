@@ -6,7 +6,6 @@ String $powershell = "C:/UserRights.psm1",
 String $filter = "\"*${userright}*\"",
 String $ps_exe = 'C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoProfile -NoLogo -NonInteractive',
 
-
 ){
 
 /*   
@@ -93,16 +92,34 @@ String $ps_exe = 'C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoP
        auth_membership => false,
      }
 
-    # registry_value { 'HKLM\\Software\\Wow6432Node\\Interwoven\\Worksite\\imEmailSvcBad Directory': 
-    #    ensure => present,
-    #    type => string, 
-    #    data => "${badmail}", 
-    # }
 */
-     user { 'nutanixadmin': 
-        ensure => 'present', 
-        password => 'xxxxxxxxx', 
-        comment => 'Nutanix Admin User', 
-        #groups => ['BUILTIN\Administrators','BUILTIN\Users'], 
-     }
+
+
+
+if $securityprincipal =~ /^\.\\(.*)/ {
+    $account_to_manage = "\"${1}\""
+  } else {
+    $account_to_manage = $securityprincipal
+  }
+
+/*
+  # Working Exec
+exec { "Grant-Privilege-${userright}-${securityprincipal}":
+    # Working:
+    command   => "${ps_exe} -Command \"& {Import-Module ${powershell}; Grant-UserRight -Account \'${account_to_manage}\' -Right ${userright} }\"",
+    onlyif    => "${ps_exe} -Command \"& {Import-Module ${powershell}; If (Test-AccountHasUserRight -Right ${userright} -Account \'${account_to_manage}\') { Exit 1 } Else { Exit 0 } }\"",
+    logoutput => true,
+    require   => File[$powershell],
+  }
+*/
+  # Non Working Exec
+  exec { "Grant-Privilege-${userright}-${securityprincipal}":
+    # Not Working:
+    command   => "Import-Module ${powershell}; Grant-UserRight -Account ${account_to_manage} -Right ${userright}",
+    onlyif    => "Import-Module ${powershell}; If (Test-AccountHasUserRight -Right ${userright} -Account ${account_to_manage} ) { Exit 1 } Else { Exit 0 }",
+    provider  => powershell,  
+    logoutput => true,
+    require   => File[$powershell],
+  }
+
 }
