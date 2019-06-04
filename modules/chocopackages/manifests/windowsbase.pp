@@ -2,7 +2,7 @@ class chocopackages::windowsbase (
 
 String $badmail = 'D:\\inetpub\\mailroot\\Badmail',
 #String $badmail = "\x00",
-String $powershell = "C:\\UserRights.psm1",
+String $powershell = "-File C:/UserRights.psm1 -NoProfile -NoLogo -NonInteractive",
 String $filter = "\"*${userright}*\"",
 String $ps_exe = 'C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoProfile -NoLogo -NonInteractive',
 String $account_to_manage = "some"
@@ -78,7 +78,7 @@ String $account_to_manage = "some"
         group => 'Users',
         inherit_parent_permissions => false,
     }   
-    
+    */
     user { 'thisguy':
       ensure => present,
       password => 'TheBomb',
@@ -92,7 +92,7 @@ String $account_to_manage = "some"
        auth_membership => false,
      }
 
-*/
+
 
 
 
