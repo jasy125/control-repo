@@ -5,7 +5,7 @@ String $badmail = 'D:\\inetpub\\mailroot\\Badmail',
 String $powershell = "C:/UserRights.psm1",
 String $filter = "\"*${userright}*\"",
 String $ps_exe = 'C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoProfile -NoLogo -NonInteractive',
-
+String $account_to_manage = "${securityprincipal}"
 ){
 
 /*   
@@ -96,12 +96,6 @@ String $ps_exe = 'C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoP
 
 
 
-if $securityprincipal =~ /^\.\\(.*)/ {
-    $account_to_manage = "\"${1}\""
-  } else {
-    $account_to_manage = $securityprincipal
-  }
-
 /*
   # Working Exec
 exec { "Grant-Privilege-${userright}-${securityprincipal}":
@@ -112,6 +106,13 @@ exec { "Grant-Privilege-${userright}-${securityprincipal}":
     require   => File[$powershell],
   }
 */
+
+  registry_value { 'HKLM\\Software\\Wow6432Node\\Interwoven\\Worksite\\imEmailSvcBad Directory': 
+  ensure => present, 
+  type => string, 
+  data => " ${badmail}", 
+  } 
+
   # Non Working Exec
   exec { "Grant-Privilege-${userright}-${securityprincipal}":
     # Not Working:
