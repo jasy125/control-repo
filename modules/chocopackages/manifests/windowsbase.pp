@@ -110,7 +110,7 @@ exec { "Grant-Privilege-${userright}-${securityprincipal}":
   registry_value { 'HKLM\\Software\\Wow6432Node\\Interwoven\\Worksite\\imEmailSvcBad Directory': 
   ensure => present, 
   type => string, 
-  data => " ${badmail}", 
+  data => "${badmail}", 
   } 
 /*
   # Non Working Exec
