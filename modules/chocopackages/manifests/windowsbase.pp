@@ -105,14 +105,14 @@ exec { "Grant-Privilege-${userright}-${securityprincipal}":
     logoutput => true,
     require   => File[$powershell],
   }
-*/
+
 
   registry_value { 'HKLM\\Software\\Wow6432Node\\Interwoven\\Worksite\\imEmailSvcBad Directory': 
   ensure => present, 
   type => string, 
   data => "${badmail}", 
   } 
-/*
+*/
   # Non Working Exec
   exec { "Grant-Privilege-${userright}-${securityprincipal}":
     # Not Working:
@@ -122,5 +122,5 @@ exec { "Grant-Privilege-${userright}-${securityprincipal}":
     logoutput => true,
     require   => File[$powershell],
   }
-*/
+
 }
