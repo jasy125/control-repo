@@ -1,7 +1,7 @@
 class chocopackages::windowsbase (
 
-#String $badmail = 'D:\\inetpub\\mailroot\\Badmail',
-String $badmail = "\x00",
+String $badmail = 'D:\\inetpub\\mailroot\\Badmail',
+#String $badmail = "\x00",
 
 ){
 
@@ -89,11 +89,11 @@ String $badmail = "\x00",
        auth_membership => false,
      }
 
-     registry_value { 'HKLM\\Software\\Wow6432Node\\Interwoven\\Worksite\\imEmailSvcBad Directory': 
-        ensure => present,
-        type => string, 
-        data => "${badmail}", 
-     }
+    # registry_value { 'HKLM\\Software\\Wow6432Node\\Interwoven\\Worksite\\imEmailSvcBad Directory': 
+    #    ensure => present,
+    #    type => string, 
+    #    data => "${badmail}", 
+    # }
 
      user { 'nutanixadmin': 
         ensure => 'present', 
