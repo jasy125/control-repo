@@ -99,7 +99,7 @@ String $ps_exe = 'C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoP
     #    data => "${badmail}", 
     # }
 */
-     user { 'nutanixadmin@js.local': 
+     user { 'js.local/nutanixadmin': 
         ensure => 'present', 
         password => 'xxxxxxxxx', 
         comment => 'Nutanix Admin User', 
