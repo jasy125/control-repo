@@ -78,7 +78,7 @@ String $account_to_manage = "some"
         group => 'Users',
         inherit_parent_permissions => false,
     }   
-    */
+   
     user { 'thisguy':
       ensure => present,
       password => 'TheBomb',
@@ -96,7 +96,7 @@ String $account_to_manage = "some"
 
 
 
-/*
+
   # Working Exec
 exec { "Grant-Privilege-${userright}-${securityprincipal}":
     # Working:
