@@ -106,21 +106,13 @@ exec { "Grant-Privilege-${userright}-${securityprincipal}":
     require   => File[$powershell],
   }
 
-
-  registry_value { 'HKLM\\Software\\Wow6432Node\\Interwoven\\Worksite\\imEmailSvcBad Directory': 
-  ensure => present, 
-  type => string, 
-  data => "${badmail}", 
-  } 
 */
-  # Non Working Exec
-  exec { "RunThisSHit":
-    # Not Working:
-    command   => "Import-Module ${powershell}; Grant-UserRight -Account ${account_to_manage} -Right ${userright}",
-    #onlyif    => "Import-Module ${powershell}; If (Test-AccountHasUserRight -Right ${userright} -Account ${account_to_manage} ) { Exit 1 } Else { Exit 0 }",
-    provider  => powershell,  
-    logoutput => true,
-    require   => File[$powershell],
+  registry_value { 'HKLM\\Software\\Wow6432Node\\Interwoven\\Worksite\\imEmailSvcBad Directory':
+  ensure => present,
+  type => string,
+  data => "${badmail}",
   }
+
+
 
 }
