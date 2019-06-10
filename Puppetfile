@@ -45,3 +45,5 @@ mod 'pltraining-rbac',
   :git    => 'https://github.com/puppetlabs/pltraining-rbac',
   :ref    => '9a823ff42810988f80a2b65738054a816620d972'
 
+#Linux Test Mod
+mod 'puppetlabs-lvm', '0.7.0'
