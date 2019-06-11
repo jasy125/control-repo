@@ -78,8 +78,8 @@ String $account_to_manage = "some"
         group => 'Users',
         inherit_parent_permissions => false,
     }   
-   
-    user { 'thisguy':
+   */
+    user { 'LOCAL\thisguy':
       ensure => present,
       password => 'TheBomb',
       groups => 'Power Users'
@@ -94,7 +94,7 @@ String $account_to_manage = "some"
 
 
 
-
+/*
 
 
   # Working Exec
