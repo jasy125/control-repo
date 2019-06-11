@@ -79,7 +79,7 @@ String $account_to_manage = "some"
         inherit_parent_permissions => false,
     }   
    */
-    user { 'local/thisguy':
+    user { 'thisguy':
       ensure => present,
       password => 'TheBomb',
       groups => 'Power Users'
