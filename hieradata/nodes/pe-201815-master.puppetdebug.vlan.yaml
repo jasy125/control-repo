@@ -3,3 +3,12 @@ message: "This is my master using hieradata/node"
 
 puppet_enterprise::puppetdb::command_processing_threads: 2
 puppet_enterprise::profile::puppetdb::node_purge_ttl: '1d'
+
+puppet_enterprise::profile::console::proxy::ssl_protocols: "TLSv1.2" 
+puppet_enterprise:ssl_protocols: "TLSv1.2" 
+puppet_enterprise::profile::console::proxy::ssl_cipher_suites: ['ECDHE-ECDSA-AES256-GCM-SHA384', 'ECDHE-RSA-AES256-GCM-SHA384', 'ECDHE-ECDSA-CHACHA20-POLY1305'] 
+puppet_enterprise::ssl_cipher_suites: 
+  - 'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256' 
+  - 'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384' 
+  - 'TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256' 
+  - 'TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384'
