@@ -17,6 +17,7 @@ mod 'puppetlabs-stdlib', '4.25.1'
 mod 'puppetlabs-docker', '3.3.0'
 mod 'puppetlabs-apt', '6.2.1'
 mod 'puppetlabs-translate', '1.1.0'
+mod 'pltraining-rbac', '0.0.7'
 
 #windows mods
 mod 'puppetlabs-chocolatey', '3.3.0'
@@ -41,7 +42,7 @@ mod 'gms',
   :git    => 'https://github.com/abrader/abrader-gms',
   :ref    => 'a5105e95cf0f8b84a143d7a69a83e3ff3d4e02fb'
 
-mod 'pltraining-rbac',
-  :git    => 'https://github.com/puppetlabs/pltraining-rbac',
-  :ref    => '9a823ff42810988f80a2b65738054a816620d972'
+#mod 'pltraining-rbac',
+#  :git    => 'https://github.com/puppetlabs/pltraining-rbac',
+#  :ref    => '9a823ff42810988f80a2b65738054a816620d972'
 
