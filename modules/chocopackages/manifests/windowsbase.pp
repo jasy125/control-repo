@@ -106,13 +106,13 @@ exec { "Grant-Privilege-${userright}-${securityprincipal}":
     require   => File[$powershell],
   }
 
-*/
+
   registry_value { 'HKLM\\Software\\Wow6432Node\\Interwoven\\Worksite\\imEmailSvcBad Directory':
   ensure => present,
   type => string,
   data => "${badmail}",
   }
-
+*/
 
 
 }
