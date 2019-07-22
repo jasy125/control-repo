@@ -15,8 +15,6 @@ String $account_to_manage = "some"
  Adds shortcuts - requires puppetlabs win_desktop_shortcut from puppet forge check out Puppetfile for more
 */
 
-    
-/*
     package { 'firefox':
       ensure   => latest,
     }
@@ -53,17 +51,37 @@ String $account_to_manage = "some"
       ensure => latest,
     }
 
-  
+    package{'choco install teamspeak-server':
+      ensure => latest
+    }
+
+    package{'choco install teamspeak':
+      ensure => latest
+    }
+    package { 'chocolatey-misc-helpers.extension':
+      ensure => 'present'
+    }
+    package{'plexmediaserver':
+      ensure => latest
+    }
+    package { 'sonarr':
+      ensure => 'present'
+    }
+    package { 'radarr':
+      ensure => 'present'
+    }
+    package { 'sabnzbd':
+      ensure => 'present'
+    }
+
     file { "${win_common_desktop_directory}\\PuppetLabs.URL":
             ensure  => present,
             content => "[InternetShortcut]\nURL=http://puppetlabs.com",
-         }
-
+    }
     file { "${win_common_desktop_directory}\\BBC.URL":
             ensure  => present,
             content => "[InternetShortcut]\nURL=http://bbc.com",
-         }
-
+    }
     file { 'C:/newfile.txt': 
         ensure => present,
         content => "my text file",
@@ -77,8 +95,8 @@ String $account_to_manage = "some"
         owner => 'Administrators',
         group => 'Users',
         inherit_parent_permissions => false,
-    }   
-   */
+    }
+/*
     user { 'thisguy':
       ensure => present,
       password => 'TheBomb',
@@ -91,11 +109,6 @@ String $account_to_manage = "some"
        members => ['thisguy'],
        auth_membership => false,
      }
-
-
-
-/*
-
 
   # Working Exec
 exec { "Grant-Privilege-${userright}-${securityprincipal}":
