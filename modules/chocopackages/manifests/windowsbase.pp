@@ -50,27 +50,37 @@ String $account_to_manage = "some"
     package {'treesizefree':
       ensure => latest,
     }
-
+    package{'teamviewer':
+      ensure => latest,
+    }
     package{'choco install teamspeak-server':
-      ensure => latest
+      ensure => latest,
     }
 
     package{'choco install teamspeak':
-      ensure => latest
+      ensure => latest,
     }
     package { 'chocolatey-misc-helpers.extension':
-      ensure => 'present'
+      ensure => 'present',
     }
     package{'plexmediaserver':
-      ensure => latest
+      ensure => latest,
     }
     package { 'sonarr':
-      ensure => 'present'
+      ensure => 'present',
     }
     package { 'radarr':
-      ensure => 'present'
+      ensure => 'present',
     }
     package { 'sabnzbd':
+      ensure => 'present',
+    }
+
+    package { 'cpu-z.install':
+      ensure => 'present'
+    }
+
+    package { 'procmon':
       ensure => 'present'
     }
 
