@@ -1,24 +1,26 @@
 class windows_profile::domain {
-
+ /*
   $domaincontrollerfeatures = ['AD-Domain-Services','DNS']
 
   windowsfeature { $domaincontrollerfeatures:
     ensure => present,
     installmanagementtools => true,
   }
+*/
 
-  /*
   dsc_windowsfeature  { 'addsinstall':
             dsc_ensure => 'Present',
             dsc_name => 'AD-Domain-Services',
- 
-        }
-dsc_windowsfeature  {'addstools':
+
+  }
+  dsc_windowsfeature  {'addstools':
             dsc_ensure => 'Present',
             dsc_name => 'RSAT-ADDS',
-        }
-  
-  */
+  }
+  dsc_windowsfeature  {'addstools':
+            dsc_ensure => 'Present',
+            dsc_name => 'DNS',
+  }
 
   dsc_xaddomain   { 'primaryDC':
     subscribe => Dsc_windowsfeature['addsinstall'],
