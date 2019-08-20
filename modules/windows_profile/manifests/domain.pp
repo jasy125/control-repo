@@ -17,7 +17,7 @@ class windows_profile::domain {
             dsc_ensure => 'Present',
             dsc_name => 'RSAT-ADDS',
   }
-  dsc_windowsfeature  {'addstools':
+  dsc_windowsfeature  {'DNS':
             dsc_ensure => 'Present',
             dsc_name => 'DNS',
   }
