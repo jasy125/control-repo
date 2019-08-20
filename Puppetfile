@@ -30,6 +30,9 @@ mod 'puppetlabs-windows', '6.1.0'
 mod 'puppetlabs-win_desktop_shortcut', '0.0.4'
 mod 'puppetlabs-acl', '2.1.0'
 
+#Windows Domain Setup
+mod 'puppet-windowsfeature', '3.2.2'
+
 #plex mods linux
 mod 'WhatsARanjit-plexmediaserver', '2.2.0'
 mod 'nanliu-staging', '1.0.3'
