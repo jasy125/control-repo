@@ -8,8 +8,11 @@ mod "npwalker/pe_code_manager_webhook",  '2.0.1'
 mod "npwalker/pe_metric_curl_cron_jobs", '4.0.0'
 mod 'puppet-healthcheck', '1.0.0'
 
-mod 'puppetlabs-cd4pe', :latest
+#Puppet Agent Module
+mod 'puppetlabs-puppet_agent', '2.2.0'
+
 # Requirements for cd4pe
+mod 'puppetlabs-cd4pe', :latest
 mod 'puppetlabs-concat', '4.2.1'
 mod 'puppetlabs-hocon', '1.0.1'
 mod 'puppetlabs-puppet_authorization', '0.5.0'
