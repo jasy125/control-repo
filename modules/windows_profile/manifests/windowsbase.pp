@@ -1,4 +1,4 @@
-class windows::windowsbase (
+class windows_profile::windowsbase (
 
 ){
 
