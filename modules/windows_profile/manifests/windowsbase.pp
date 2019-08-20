@@ -29,10 +29,6 @@ class windows_profile::windowsbase (
       ensure => latest,
     }
 
-    package{'teamviewer':
-      ensure => 'present',
-    }
-
     package { 'cpu-z.install':
       ensure => 'present'
     }
