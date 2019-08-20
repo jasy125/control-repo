@@ -51,7 +51,7 @@ String $account_to_manage = "some"
       ensure => latest,
     }
     package{'teamviewer':
-      ensure => latest,
+      ensure => 'present',
     }
     package{'choco install teamspeak-server':
       ensure => latest,

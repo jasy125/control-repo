@@ -1,0 +1,30 @@
+
+update the cd4pe sup with what has been done
+
+I have installed CD4PE with the Puppet file and used the tasks to configure
+I have installed CD4PE with the Puppet installer
+I have connected CD4PE to PE
+TODO Setup SSL connection
+
+
+kb article for this.
+
+blurb about what this does. 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+osVer=$(facter -p os.family)
+
+  #rhel
+  if [ "$osVer" == "RedHat" ] then
+    echo "exclude=puppet-agent" >> /etc/yum.conf
+    rpm -iUv --oldpackage $(echo "$(ls /opt/puppetlabs/server/data/packages/public/current/$(facter -p platform_tag)/puppet-agent* | grep rpm)")
+    puppet agent -t
+  #debian
+  elif [ "$osVer" == "Debian" ] then
+    sudo apt-mark hold puppet-agent
+    rpm -iUv --oldpackage $(echo "$(ls /opt/puppetlabs/server/data/packages/public/current/$(facter -p platform_tag)/puppet-agent* | grep rpm)")
+    puppet agent -t
+  else
+    echo "Not a Supported os for this task. RedHat and Debian based versions only"
+  fi
