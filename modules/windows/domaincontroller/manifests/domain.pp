@@ -12,4 +12,14 @@ class domaincontroller::domain {
     subscribe => Windowsfeature['DNS'],
   }
 
+  /*
+  $domaincontrollerfeatures = ['AD-Domain-Services','DNS']
+  
+  dsc_windowsfeature {'$domaincontrollerfeatures':
+    dsc_ensure = 'present'
+    
+  }
+  
+  */
+
 }

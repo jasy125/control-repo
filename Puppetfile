@@ -31,6 +31,7 @@ mod 'puppetlabs-win_desktop_shortcut', '0.0.4'
 mod 'puppetlabs-acl', '2.1.0'
 
 #Windows Domain Setup
+mod 'puppetlabs-dsc', '1.9.2'
 mod 'puppet-windowsfeature', '3.2.2'
 
 #plex mods linux
