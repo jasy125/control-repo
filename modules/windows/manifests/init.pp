@@ -1,5 +1,5 @@
-class domaincontroller {
+class windows {
 
-include domaincontroller::domain
+include windows::domain
 
 }

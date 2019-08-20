@@ -1,4 +1,4 @@
-class domaincontroller::domain {
+class windows::domain {
 
   $domaincontrollerfeatures = ['AD-Domain-Services','DNS']
 
