@@ -8,11 +8,6 @@ class windows_profile::domain {
     installmanagementtools => true,
   }
 
-  reboot {'after_DNS':
-    when  => pending,
-    subscribe => Windowsfeature['DNS'],
-  }
-
   /*
   $domaincontrollerfeatures = ['AD-Domain-Services','DNS']
   
