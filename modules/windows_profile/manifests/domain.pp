@@ -6,12 +6,12 @@ class windows_profile::domain {
   windowsfeature { $domaincontrollerfeatures:
     ensure => present,
     installmanagementtools => true,
+    name =>$domaincontrollerfeatures,
   }
-
-  reboot { 'after_DNS':
-    when  => pending,
-    subscribe => Windowsfeature['DNS'],
-  }
+ 
+ reboot { 'after':
+  subscribe       => windowsfeature['DNS'],
+ }
 
   /*
   $domaincontrollerfeatures = ['AD-Domain-Services','DNS']
