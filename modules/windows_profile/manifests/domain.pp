@@ -5,7 +5,6 @@ class windows_profile::domain {
   windowsfeature { $domaincontrollerfeatures:
     ensure => present,
     installmanagementtools => true,
-    name =>$domaincontrollerfeatures,
   }
 
   /*
