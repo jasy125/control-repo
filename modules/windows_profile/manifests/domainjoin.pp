@@ -12,7 +12,7 @@ class windows_profile::domainjoin (
   write-error 'Error: Unable to convert password string to a secure string'; \
   exit 10; \
   } \
-  \$creds=New-Object System.Management.Automation.PSCredential( ${admin}, \$secStr ); \
+  \$creds=New-Object System.Management.Automation.PSCredential( '${admin}', \$secStr ); \
   if (-not \$?) { \
   write-error 'Error: Unable to create PSCredential object'; \
   exit 20; \
