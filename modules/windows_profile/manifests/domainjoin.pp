@@ -26,7 +26,7 @@ class windows_profile::domainjoin (
 
     
   exec { 'join_domain':
-  command => "Add-Computer -DomainName '${domain}' -OUPath '${machine_ou}' -Restart -Force -Cred admin",
+  command => $code,
   provider => powershell,
   logoutput => true,
   unless => "if ((Get-WMIObject Win32_ComputerSystem).Domain -ne ${domain}) { exit 1 }",
