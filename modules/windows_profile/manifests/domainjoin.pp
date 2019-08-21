@@ -18,7 +18,7 @@ class windows_profile::domainjoin (
   write-error 'Error: Unable to create PSCredential object'; \
   exit 20; \
   } \
-  Add-Computer -DomainName '${domain}' -OUPath '${machine_ou}' -Restart -Force -Cred \$creds; \
+  Add-Computer -DomainName ${domain} -OUPath '${machine_ou}' -Restart -Force -Cred \$creds; \
   if (-not \$?) { \
   write-error 'Error: Unable to join domain'; \
   exit 30; \
