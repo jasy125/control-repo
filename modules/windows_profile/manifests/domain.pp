@@ -1,7 +1,7 @@
 class windows_profile::domain (
   $user = 'admin',
   $passw = 'Qu@lity!',
-  $dc = 'ad.jsserv.local',
+  $dc = 'jsserv.local',
   $dcdbpath = 'C:\NTDS',
   $dclogpath = 'c:\NTDS',
 
