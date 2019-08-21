@@ -6,7 +6,7 @@ class windows_profile::domainjoin (
 ) {
 
     #Set Creds for creating the computer object
-    $creds = "\ New-Object System.Management.Automation.PSCredential( '${admin}', '${passw}' ); 
+    $creds = "New-Object System.Management.Automation.PSCredential( '${admin}', '${passw}' ); 
     \ Add-Computer -DomainName ${domain} -OUPath ${machine_ou} -Restart -Force -Cred ${creds};"
 
 
