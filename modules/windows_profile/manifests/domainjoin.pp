@@ -1,5 +1,5 @@
 class windows_profile::domainjoin (
-  $domain = 'ad.jsserv.local',
+  $domain = 'jsserv.local',
   $admin = 'admin',
   $passw = 'Qu@lity!',
   $machine_ou = 'OU=Computers,DC=jsserv,DC=local',
