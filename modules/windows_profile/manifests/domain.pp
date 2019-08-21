@@ -1,12 +1,13 @@
 class windows_profile::domain {
- /*
+
+/*
   $domaincontrollerfeatures = ['AD-Domain-Services','DNS']
 
   windowsfeature { $domaincontrollerfeatures:
     ensure => present,
     installmanagementtools => true,
   }
-*/
+  */
 
   dsc_windowsfeature  { 'addsinstall':
             dsc_ensure => 'Present',
