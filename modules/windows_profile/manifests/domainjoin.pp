@@ -3,7 +3,7 @@ class windows_profile::domainjoin (
   $admin = 'admin@jsserv.local',
   $passw = 'Qu@lity!',
   $secure_password = false,
-  $machine_ou = "OU=computers,DC=jsserv,DC=local",
+  $machine_ou = "OU=windows,OU=puppet,DC=jsserv,DC=local",
 ) {
 
 #Set Creds for creating the computer object
