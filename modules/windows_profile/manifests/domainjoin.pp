@@ -7,7 +7,7 @@ class windows_profile::domainjoin (
 
 #Set Creds for creating the computer object
   $code = " \
-  \$secStr=ConvertTo-SecureString ${passw} -AsPlainText -Force; \
+  \$secStr=ConvertTo-SecureString '${passw}' -AsPlainText -Force; \
   if (-not \$?) { \
   write-error 'Error: Unable to convert password string to a secure string'; \
   exit 10; \
