@@ -1,6 +1,6 @@
 class windows_profile::domainjoin (
   $domain = 'jsserv.local',
-  $admin = 'admin',
+  $admin = 'admin@jsserv.local',
   $passw = 'Qu@lity!',
   $secure_password = false,
   $machine_ou = 'OU=computers,DC=jsserv,DC=local',
@@ -24,7 +24,6 @@ class windows_profile::domainjoin (
   exit 30; \
   } \
   exit 0"
-
     
   exec { 'join_domain':
   command => $code,
