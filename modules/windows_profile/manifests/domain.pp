@@ -26,12 +26,12 @@ class windows_profile::domain {
     subscribe => Dsc_windowsfeature['addsinstall'],
             dsc_domainname => 'ad.jsserv.local',
     dsc_domainadministratorcredential => {
-              'user' => 'jsadmin',
-              'password' => Sensitive('Puppetlabs')
+              'user' => 'admin',
+              'password' => Sensitive('Qu@lity!')
     },
     dsc_safemodeadministratorpassword   => {
-            'user' => 'jsadmin',
-              'password' => Sensitive('Puppetlabs')
+            'user' => 'admin',
+              'password' => Sensitive('Qu@lity')
     },
       dsc_databasepath => 'c:\NTDS',
       dsc_logpath => 'c:\NTDS',
