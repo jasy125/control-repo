@@ -1,4 +1,11 @@
-class windows_profile::domain {
+class windows_profile::domain (
+  $user = 'admin',
+  $passw = 'Qu@lity!',
+  $dc = 'ad.jsserv.local',
+  $dcdbpath = 'C:\NTDS',
+  $dclogpath = 'c:\NTDS',
+
+) {
 
 /*
   $domaincontrollerfeatures = ['AD-Domain-Services','DNS']
@@ -24,18 +31,21 @@ class windows_profile::domain {
   }
 
   dsc_xaddomain   { 'primaryDC':
-    subscribe => Dsc_windowsfeature['addsinstall'],
-            dsc_domainname => 'ad.jsserv.local',
+    subscribe      => Dsc_windowsfeature['addsinstall'],
+    dsc_domainname => $dc,
+
     dsc_domainadministratorcredential => {
-              'user' => 'admin',
-              'password' => Sensitive('Qu@lity!')
+            'user'     => $user,
+            'password' => Sensitive($passw)
     },
+
     dsc_safemodeadministratorpassword   => {
-            'user' => 'admin',
-              'password' => Sensitive('Qu@lity')
+            'user'     => $user,
+            'password' => Sensitive($passw)
     },
-      dsc_databasepath => 'c:\NTDS',
-      dsc_logpath => 'c:\NTDS',
+
+    dsc_databasepath => $dcdbpath,
+    dsc_logpath => $dclogpath,
   }
 
   reboot {'dsc_reboot':
