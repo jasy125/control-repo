@@ -67,6 +67,7 @@ class windows_profile::domain (
       dsc_path => $domaincontainer,
       dsc_ensure => 'Present',
       dsc_credential => $user,
+      subscribe      => Dsc_xaddomain['primaryDC'],
 
   }
 
