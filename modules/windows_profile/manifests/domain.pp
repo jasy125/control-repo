@@ -61,7 +61,7 @@ $oupathmaster.each | String $ou | {
       dsc_path                            => $domaincontainer,
       dsc_description                     => "Top Level OU - ${ou}",
       dsc_protectedfromaccidentaldeletion => true,
-      subscribe                           => Dsc_xaddomain['primaryDC'],
+      #subscribe                           => Dsc_xaddomain['primaryDC'],
       dsc_credential                      => {
         'user'     => $user,
         'password' => Sensitive($passw)
