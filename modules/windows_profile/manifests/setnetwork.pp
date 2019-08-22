@@ -13,7 +13,7 @@ class windows_profile::setnetwork (
 ) {
 
   dsc_ipaddress { 'setipaddress':
-    dsc_addressfamily  => 'IPV4',
+    dsc_addressfamily  => 'IPv4',
     dsc_interfacealias => 'Ethernet',
     dsc_ipaddress      => $ipadd,
   }
@@ -21,13 +21,13 @@ class windows_profile::setnetwork (
   dsc_defaultgatewayaddress {'setdefaultgateway':
     dsc_address        => $defaultgateway,
     dsc_interfacealias => 'Ethernet',
-    dsc_addressfamily  => 'IPV4',
+    dsc_addressfamily  => 'IPv4',
   }
 
   dsc_dnsserveraddress {'setdns':
     dsc_address        => $dnsadd,
     dsc_interfacealias => 'Ethernet',
-    dsc_addressfamily  => 'IPV4',
+    dsc_addressfamily  => 'IPv4',
     dsc_validate       => $dnsvalidate,
   }
 
