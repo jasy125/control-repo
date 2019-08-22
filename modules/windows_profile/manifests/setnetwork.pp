@@ -26,7 +26,7 @@ class windows_profile::setnetwork (
 
   dsc_dnsserveraddress {'setdns':
     dsc_address        => $dnsadd,
-    dsc_interfacealisa => 'Ethernet',
+    dsc_interfacealias => 'Ethernet',
     dsc_addressfamily  => 'IPV4',
     dsc_validate       => $dnsvalidate,
   }
