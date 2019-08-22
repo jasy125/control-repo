@@ -32,6 +32,7 @@ class windows_profile::domain (
             dsc_name   => 'DNS',
   }
 
+if ((Get-WMIObject Win32_ComputerSystem).Domain -ne ${domain}) {
   dsc_xaddomain   { 'primaryDC':
     subscribe                         => Dsc_windowsfeature['addsinstall'],
     dsc_domainname                    => $dc,
@@ -50,6 +51,7 @@ class windows_profile::domain (
             'password' => Sensitive($passw)
     },
   }
+}
   # Investigate building this recursive structure
 
 $oupathmaster.each | String $ou | {
