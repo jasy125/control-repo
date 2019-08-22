@@ -8,6 +8,8 @@ class windows_profile::domain (
   $forestmode = 'WinThreshold',
   $domainmode = 'WinThreshold',
   $domaincontainer = "dc=jsserv,dc=local",
+  $oupathmaster = ['puppet','emea','amer','apac'],
+  $oupathchild = [['puppet','workstation'],['puppet','server'],['emea','server'],['amer','workstation'],['apac','server']],
 
 ) {
 
@@ -58,14 +60,45 @@ class windows_profile::domain (
     },
   }
   # Investigate building this into an array loop, build loop in order of ou top down ie layer one layer two based on layer one with key pair hash
+
+$oupathmaster.each | String $ou | {
+  dsc_xadorganizationalunit  { "Create ${ou}":
+      dsc_ensure                          => 'Present',
+      dsc_name                            => $ou,
+      dsc_path                            => $domaincontainer,
+      dsc_description                     => "Top Level OU - ${ou}",
+      dsc_protectedfromaccidentaldeletion => true,
+      subscribe                           => Dsc_xaddomain['primaryDC'],
+      dsc_credential                      => {
+        'user'     => $user,
+        'password' => Sensitive($passw)
+      },
+  }
+}
+
+$oupathchild.each | String $top, $value | {
+  dsc_xadorganizationalunit  { "Create ${value}":
+      dsc_ensure                          => 'Present',
+      dsc_name                            => $value,
+      dsc_path                            => "OU=${top},${domaincontainer}",
+      dsc_description                     => "Top Level OU - ${value}",
+      dsc_protectedfromaccidentaldeletion => true,
+      subscribe                           => Dsc_xadorganizationalunit["Create ${top}"],
+      dsc_credential                      => {
+        'user'     => $user,
+        'password' => Sensitive($passw)
+      },
+  }
+}
+/*
   dsc_xadorganizationalunit  {'CreateUKOU':
       dsc_ensure                          => 'Present',
       dsc_name                            => 'uk',
       dsc_path                            => $domaincontainer,
       dsc_description                     => 'Top Level OU',
       dsc_protectedfromaccidentaldeletion => true,
-      #subscribe      => Dsc_xaddomain['primaryDC'],
-      dsc_credential => {
+      subscribe                           => Dsc_xaddomain['primaryDC'],
+      dsc_credential                      => {
         'user'     => $user,
         'password' => Sensitive($passw)
       },
@@ -77,7 +110,7 @@ class windows_profile::domain (
       dsc_path                            => "OU=UK,${domaincontainer}",
       dsc_protectedfromaccidentaldeletion => true,
       subscribe                           => Dsc_xadorganizationalunit['CreateUKOU'],
-      dsc_credential => {
+      dsc_credential                      => {
         'user'     => $user,
         'password' => Sensitive($passw)
       },
@@ -118,7 +151,7 @@ class windows_profile::domain (
         'password' => Sensitive($passw)
       },
   }
-
+*/
   # Lets create the OU needed for the computers.
   /*
 
