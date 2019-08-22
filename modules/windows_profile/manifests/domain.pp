@@ -173,9 +173,10 @@ $oupathchild.each | String $top, $value | {
     }
     dsc_xaddomaincontroller
 */
-
+/*
   reboot {'dsc_reboot':
       message => 'DSC has requested a reboot',
       when => pending,
   }
+  */
 }
