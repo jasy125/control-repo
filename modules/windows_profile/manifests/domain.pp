@@ -3,7 +3,6 @@ class windows_profile::domain (
   $passw = 'Qu@lity!',
   $dc = 'jsserv.local',
   $dcnetbois = 'jsservlocal',
-  $dcdbpath = 'c:\NTDS',
   $dclogpath = 'c:\NTDS',
   $forestmode = 'WinThreshold',
   $domainmode = 'WinThreshold',
@@ -39,7 +38,6 @@ class windows_profile::domain (
     dsc_domainnetbiosname             => $dcnetbois,
     dsc_forestmode                    => $forestmode,
     dsc_domainmode                    => $domainmode,
-    dsc_databasepath                  => $dcdbpath,
     dsc_logpath                       => $dclogpath,
 
     dsc_domainadministratorcredential => {
