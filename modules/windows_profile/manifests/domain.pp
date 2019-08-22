@@ -18,21 +18,21 @@ Class windows_profile::domain (
 
 ) {
 
-  dsc_windowsfeature  { 'addsinstall':
+  dsc_windowsfeature { 'addsinstall':
             dsc_ensure => 'Present',
             dsc_name   => 'AD-Domain-Services',
 
   }
-  dsc_windowsfeature  {'addstools':
+  dsc_windowsfeature {'addstools':
             dsc_ensure => 'Present',
             dsc_name   => 'RSAT-ADDS',
   }
-  dsc_windowsfeature  {'DNS':
+  dsc_windowsfeature {'DNS':
             dsc_ensure => 'Present',
             dsc_name   => 'DNS',
   }
 
-  dsc_xaddomain   { 'primaryDC':
+  dsc_xaddomain { 'primaryDC':
     subscribe                         => Dsc_windowsfeature['addsinstall'],
     dsc_domainname                    => $dc,
     dsc_domainnetbiosname             => $dcnetbois,
@@ -49,6 +49,16 @@ Class windows_profile::domain (
             'user'     => $user,
             'password' => Sensitive($passw)
     },
+  }
+
+  dsc_group { 'addAdmin' :
+    dsc_groupname        => 'Domain Admins',
+    dsc_memberstoinclude => 'admin',
+    dsc_credential       => {
+        'user'     => $user,
+        'password' => Sensitive($passw)
+      },
+    dsc_subscribe  => Dsc_xaddomain['primaryDC'],
   }
 
   # Investigate building this recursive structure
