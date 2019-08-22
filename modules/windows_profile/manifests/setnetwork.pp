@@ -1,6 +1,6 @@
 class windows_profile::setnetwork (
 
-  $ipadd = $fact['networking']['interfaces']['Ethernet']['ip'],
+  $ipadd = $facts['networking']['interfaces']['Ethernet']['ip'],
   $defaultgateway = '192.168.0.1',
   $dnsadd = '127.0.0.1, 8.8.8.8',
   $dnsvalidate = true,
