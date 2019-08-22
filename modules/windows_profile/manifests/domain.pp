@@ -54,10 +54,6 @@ class windows_profile::domain (
   dsc_group { 'addAdmin' :
     dsc_groupname        => 'Domain Admins',
     dsc_memberstoinclude => 'admin',
-    dsc_credential       => {
-        'user'     => $user,
-        'password' => Sensitive($passw)
-      },
   }
 
   # Investigate building this recursive structure
