@@ -65,7 +65,7 @@ class windows_profile::domain (
             'password' => Sensitive($passw)
     },
   }
-  # Investigate building this into an array loop, build loop in order of ou top down ie layer one layer two based on layer one with key pair hash
+  # Investigate building this recursive structure
 
 $oupathmaster.each | String $ou | {
   dsc_xadorganizationalunit  { "Create ${ou}":
@@ -74,7 +74,7 @@ $oupathmaster.each | String $ou | {
       dsc_path                            => $domaincontainer,
       dsc_description                     => "Top Level OU - ${ou}",
       dsc_protectedfromaccidentaldeletion => true,
-      #subscribe                           => Dsc_xaddomain['primaryDC'],
+      subscribe                           => Dsc_xaddomain['primaryDC'],
       dsc_credential                      => {
         'user'     => $user,
         'password' => Sensitive($passw)
@@ -97,6 +97,7 @@ $oupathchild[child].each | $key | {
   }
 }
 /*
+ #Lets create the OU needed for the computers.
   dsc_xadorganizationalunit  {'CreateUKOU':
       dsc_ensure                          => 'Present',
       dsc_name                            => 'uk',
@@ -121,46 +122,6 @@ $oupathchild[child].each | $key | {
         'password' => Sensitive($passw)
       },
 
-  }
-  dsc_xadorganizationalunit  {'CreateDesktopOU':
-      dsc_ensure                          => 'Present',
-      dsc_name                            => 'desktop',
-      dsc_path                            => "OU=UK,${domaincontainer}",
-      dsc_protectedfromaccidentaldeletion => true,
-      subscribe                           => Dsc_xadorganizationalunit['CreateUKOU'],
-      dsc_credential => {
-        'user'     => $user,
-        'password' => Sensitive($passw)
-      },
-  }
-
-  dsc_xadorganizationalunit  {'CreatePuppetOU':
-      dsc_ensure                          => 'Present',
-      dsc_name                            => 'puppet',
-      dsc_path                            => $domaincontainer,
-      dsc_description                     => 'Top Level OU Puppet',
-      dsc_protectedfromaccidentaldeletion => true,
-      #subscribe      => Dsc_xaddomain['primaryDC'],
-      dsc_credential => {
-        'user'     => $user,
-        'password' => Sensitive($passw)
-      },
-  }
-  dsc_xadorganizationalunit  {'CreateWindowsOU':
-      dsc_ensure                          => 'Present',
-      dsc_name                            => 'windows',
-      dsc_path                            => "OU=puppet,${domaincontainer}",
-      dsc_protectedfromaccidentaldeletion => true,
-      subscribe                           => Dsc_xadorganizationalunit['CreatePuppetOU'],
-      dsc_credential => {
-        'user'     => $user,
-        'password' => Sensitive($passw)
-      },
-  }
-*/
-  # Lets create the OU needed for the computers.
-  /*
-
    xWaitForADDomain 'WaitForDomainInstall' {
       DomainName = $Node.DomainName;
       DomainUserCredential = $DomainCredential;
@@ -170,19 +131,10 @@ $oupathchild[child].each | $key | {
       DependsOn = '[xADDomain]ADDomainInstall';
     }
 
-    xADOrganizationalUnit 'CreateAccountsOU' {
-      Name = 'Accounts';
-      Path = $DomainContainer;
-      Ensure = 'Present';
-      Credential = $DomainCredential;
-      DependsOn = '[xWaitForADDomain]WaitForDomainInstall';
-    }
-    dsc_xaddomaincontroller
 */
-/*
+
   reboot {'dsc_reboot':
       message => 'DSC has requested a reboot',
       when => pending,
   }
-  */
 }
