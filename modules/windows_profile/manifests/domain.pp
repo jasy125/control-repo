@@ -1,4 +1,4 @@
-class windows_profile::domain (
+Class windows_profile::domain (
   $user = 'admin',
   $passw = 'Qu@lity!',
   $dc = 'jsserv.local',
