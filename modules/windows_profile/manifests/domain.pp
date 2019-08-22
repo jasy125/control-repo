@@ -9,7 +9,7 @@ class windows_profile::domain (
   $domainmode = 'WinThreshold',
   $domaincontainer = "dc=jsserv,dc=local",
   $oupathmaster = ['puppet','emea','amer','apac'],
-  $oupathchild = {'puppet'=>'workstation','puppet'=>'server','emea'=>'server','amer'=>'workstation','apac'=>'server'},
+  $oupathchild = ['puppet'=>'workstation','puppet'=>'server','emea'=>'server','amer'=>'workstation','apac'=>'server'],
 
 ) {
 
@@ -76,8 +76,10 @@ $oupathmaster.each | String $ou | {
   }
 }
 
-$oupathchild.each | Hash $top, $value | {
-  notify { "${top} ${vaulue}": }
+$oupathchild.each | String $top, $value | {
+  notice($top)
+  notice($value)
+
   dsc_xadorganizationalunit  { "Create ${value}":
       dsc_ensure                          => 'Present',
       dsc_name                            => $value,
