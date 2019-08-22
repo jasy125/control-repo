@@ -77,6 +77,7 @@ $oupathmaster.each | String $ou | {
 }
 
 $oupathchild.each | String $top, $value | {
+  notify { "${top} ${vaulue}": }
   dsc_xadorganizationalunit  { "Create ${value}":
       dsc_ensure                          => 'Present',
       dsc_name                            => $value,
