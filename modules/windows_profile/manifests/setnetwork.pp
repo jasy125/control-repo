@@ -28,7 +28,7 @@ class windows_profile::setnetwork (
     dsc_address        => $dnsadd,
     dsc_interfacealisa => 'Ethernet',
     dsc_addressfamily  => 'IPV4',
-    dsc_validate       => $validate,
+    dsc_validate       => $dnsvalidate,
   }
 
   $firewall[firewall].each | $key | {
