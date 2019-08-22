@@ -83,7 +83,7 @@ $oupathmaster.each | String $ou | {
 }
 
 $oupathchild[child].each | $key | {
-  dsc_xadorganizationalunit  { "Create ${key[child]}":
+  dsc_xadorganizationalunit  { "Create ${key[ou]}-${key[child]}":
       dsc_ensure                          => 'Present',
       dsc_name                            => "${key[child]}",
       dsc_path                            => "OU=${key[ou]},${domaincontainer}",
