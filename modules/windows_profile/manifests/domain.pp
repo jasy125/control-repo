@@ -47,46 +47,52 @@ class windows_profile::domain (
     dsc_databasepath                  => $dcdbpath,
     dsc_logpath                       => $dclogpath,
 
-    
     dsc_domainadministratorcredential => {
             'user'     => $user,
             'password' => Sensitive($passw)
     },
 
-    dsc_safemodeadministratorpassword   => {
+    dsc_safemodeadministratorpassword => {
             'user'     => $user,
             'password' => Sensitive($passw)
     },
-    
   }
   # Investigate building this into an array loop, build loop in order of ou top down ie layer one layer two based on layer one with key pair hash
   dsc_xadorganizationalunit  {'CreateUKOU':
       dsc_ensure                          => 'Present',
       dsc_name                            => 'uk',
       dsc_path                            => $domaincontainer,
-      dsc_credential                      => $user,
       dsc_description                     => 'Top Level OU',
       dsc_protectedfromaccidentaldeletion => true,
       #subscribe      => Dsc_xaddomain['primaryDC'],
-
+      dsc_credential => {
+        'user'     => $user,
+        'password' => Sensitive($passw)
+      },
   }
 
   dsc_xadorganizationalunit  {'CreateServersOU':
       dsc_ensure                          => 'Present',
       dsc_name                            => 'servers',
       dsc_path                            => "OU=UK,${domaincontainer}",
-      dsc_credential                      => $user,
       dsc_protectedfromaccidentaldeletion => true,
       subscribe                           => Dsc_xadorganizationalunit['CreateUKOU'],
+      dsc_credential => {
+        'user'     => $user,
+        'password' => Sensitive($passw)
+      },
 
   }
   dsc_xadorganizationalunit  {'CreateDesktopOU':
       dsc_ensure                          => 'Present',
       dsc_name                            => 'desktop',
       dsc_path                            => "OU=UK,${domaincontainer}",
-      dsc_credential                      => $user,
       dsc_protectedfromaccidentaldeletion => true,
       subscribe                           => Dsc_xadorganizationalunit['CreateUKOU'],
+      dsc_credential => {
+        'user'     => $user,
+        'password' => Sensitive($passw)
+      },
   }
 
 
