@@ -9,7 +9,13 @@ class windows_profile::domain (
   $domainmode = 'WinThreshold',
   $domaincontainer = "dc=jsserv,dc=local",
   $oupathmaster = ['puppet','emea','amer','apac'],
-  $oupathchild = [{ou => 'puppet', child =>'workstation'},{ ou=>'puppet',child=>'server'},{ou =>'emea',child =>'server'},{ou =>'amer', child =>'workstation'}{ou =>'apac', child=>'server'}],
+  $oupathchild = { child => [
+                  { ou => 'puppet', child =>'workstation'},
+                  { ou => 'puppet', child=>'server'},
+                  { ou => 'emea',   child =>'server'},
+                  { ou => 'amer',   child =>'workstation'},
+                  { ou => 'apac',   child => 'server'} ],
+  }
 
 ) {
 
@@ -76,22 +82,19 @@ $oupathmaster.each | String $ou | {
   }
 }
 
-$oupathchild.each | Hash $key | {
-  notice($key)
-
-/*
-  dsc_xadorganizationalunit  { "Create ${value}":
+$oupathchild[child].each | $key | {
+  dsc_xadorganizationalunit  { "Create ${key[child]}":
       dsc_ensure                          => 'Present',
-      dsc_name                            => $value,
-      dsc_path                            => "OU=${top},${domaincontainer}",
-      dsc_description                     => "Top Level OU - ${value}",
+      dsc_name                            => "${key[child]}",
+      dsc_path                            => "OU=${key[ou]},${domaincontainer}",
+      dsc_description                     => "Top Level OU - ${key[child]}",
       dsc_protectedfromaccidentaldeletion => true,
-      subscribe                           => Dsc_xadorganizationalunit["Create ${top}"],
+      subscribe                           => Dsc_xadorganizationalunit["Create ${key[ou]}"],
       dsc_credential                      => {
         'user'     => $user,
         'password' => Sensitive($passw)
       },
-  }*/
+  }
 }
 /*
   dsc_xadorganizationalunit  {'CreateUKOU':
