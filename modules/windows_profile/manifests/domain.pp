@@ -42,14 +42,12 @@ class windows_profile::domain (
     subscribe                         => Dsc_windowsfeature['addsinstall'],
     dsc_domainname                    => $dc,
     dsc_domainnetbiosname             => $dcnetbois,
-    dsc_domainadministratorcredential => $user,
-    dsc_safemodeadministratorpassword => $passw,
     dsc_forestmode                    => $forestmode,
     dsc_domainmode                    => $domainmode,
     dsc_databasepath                  => $dcdbpath,
     dsc_logpath                       => $dclogpath,
 
-    /*
+    
     dsc_domainadministratorcredential => {
             'user'     => $user,
             'password' => Sensitive($passw)
@@ -59,7 +57,7 @@ class windows_profile::domain (
             'user'     => $user,
             'password' => Sensitive($passw)
     },
-    */
+    
   }
   # Investigate building this into an array loop, build loop in order of ou top down ie layer one layer two based on layer one with key pair hash
   dsc_xadorganizationalunit  {'CreateUKOU':
