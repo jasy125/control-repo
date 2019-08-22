@@ -53,7 +53,7 @@ class windows_profile::domain (
 
   dsc_group { 'addAdmin' :
     dsc_groupname        => 'Domain Admins',
-    dsc_memberstoinclude => 'admin',
+    dsc_memberstoinclude => "${dcnetbois}/admin",
   }
 
   # Investigate building this recursive structure
