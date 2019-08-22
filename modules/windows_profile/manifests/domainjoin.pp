@@ -6,6 +6,9 @@ class windows_profile::domainjoin (
   $machine_ou = "OU=windows,OU=puppet,DC=jsserv,DC=local",
 ) {
 
+#Set network default gateway to ip of the domain server first.
+
+
 #Set Creds for creating the computer object
   $code = " \
   \$secStr=ConvertTo-SecureString '${passw}' -AsPlainText -Force; \

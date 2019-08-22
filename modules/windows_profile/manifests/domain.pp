@@ -2,8 +2,11 @@ class windows_profile::domain (
   $user = 'admin',
   $passw = 'Qu@lity!',
   $dc = 'jsserv.local',
-  $dcdbpath = 'C:\NTDS',
+  $dcnetbois = 'jsservlocal',
+  $dcdbpath = 'c:\NTDS',
   $dclogpath = 'c:\NTDS',
+  $forestmode = 'WinThreshold',
+  $domainmode = 'WinThreshold',
 
 ) {
 
@@ -14,6 +17,10 @@ class windows_profile::domain (
     ensure => present,
     installmanagementtools => true,
   }
+  Import-DscResource -ModuleName PSDesiredStateConfiguration
+  Import-DscResource -ModuleName xActiveDirectory
+  Import-DscResource -ModuleName NetworkingDsc
+
   */
 
   dsc_windowsfeature  { 'addsinstall':
@@ -33,7 +40,15 @@ class windows_profile::domain (
   dsc_xaddomain   { 'primaryDC':
     subscribe      => Dsc_windowsfeature['addsinstall'],
     dsc_domainname => $dc,
+    dsc_domainnetbiosname => $dcnetbois,
+    dsc_domainadministratorcredential => $user,
+    dsc_safemodeadministratorpassword => $passw,
+    dsc_forestmode => $forestmode,
+    dsc_domainmode => $domainmode,
+    dsc_databasepath => $dcdbpath,
+    dsc_logpath => $dclogpath,
 
+    /*
     dsc_domainadministratorcredential => {
             'user'     => $user,
             'password' => Sensitive($passw)
@@ -43,10 +58,39 @@ class windows_profile::domain (
             'user'     => $user,
             'password' => Sensitive($passw)
     },
-
-    dsc_databasepath => $dcdbpath,
-    dsc_logpath => $dclogpath,
+    */
   }
+  xWaitForADDomain 'WaitForDomainInstall' {
+      DomainName = $Node.DomainName;
+      DomainUserCredential = $DomainCredential;
+      RebootRetryCount = 2;
+      RetryCount = 10;
+      RetryIntervalSec = 60;
+      DependsOn = '[xADDomain]ADDomainInstall';
+    }
+
+  # Lets create the OU needed for the computers.
+  /*
+  dsc_xWaitForADDomain => {},
+  dsc_xADOrganizationalUnit => {},
+   xWaitForADDomain 'WaitForDomainInstall' {
+      DomainName = $Node.DomainName;
+      DomainUserCredential = $DomainCredential;
+      RebootRetryCount = 2;
+      RetryCount = 10;
+      RetryIntervalSec = 60;
+      DependsOn = '[xADDomain]ADDomainInstall';
+    }
+
+    xADOrganizationalUnit 'CreateAccountsOU' {
+      Name = 'Accounts';
+      Path = $DomainContainer;
+      Ensure = 'Present';
+      Credential = $DomainCredential;
+      DependsOn = '[xWaitForADDomain]WaitForDomainInstall';
+    }
+    dsc_xaddomaincontroller
+*/
 
   reboot {'dsc_reboot':
       message => 'DSC has requested a reboot',
