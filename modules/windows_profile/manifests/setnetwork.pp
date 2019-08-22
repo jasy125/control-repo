@@ -37,5 +37,4 @@ Class windows_profile::setnetwork (
       dsc_enabled => "${key[set]}",
     }
   }
-
 }
