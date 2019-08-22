@@ -9,7 +9,7 @@ class windows_profile::domain (
   $domainmode = 'WinThreshold',
   $domaincontainer = "dc=jsserv,dc=local",
   $oupathmaster = ['puppet','emea','amer','apac'],
-  $oupathchild = [['puppet','workstation'],['puppet','server'],['emea','server'],['amer','workstation'],['apac','server']],
+  $oupathchild = {'puppet'=>'workstation','puppet'=>'server','emea'=>'server','amer'=>'workstation','apac'=>'server'},
 
 ) {
 
