@@ -95,6 +95,29 @@ class windows_profile::domain (
       },
   }
 
+  dsc_xadorganizationalunit  {'CreatePuppetOU':
+      dsc_ensure                          => 'Present',
+      dsc_name                            => 'puppet',
+      dsc_path                            => $domaincontainer,
+      dsc_description                     => 'Top Level OU Puppet',
+      dsc_protectedfromaccidentaldeletion => true,
+      #subscribe      => Dsc_xaddomain['primaryDC'],
+      dsc_credential => {
+        'user'     => $user,
+        'password' => Sensitive($passw)
+      },
+  }
+  dsc_xadorganizationalunit  {'CreateWindowsOU':
+      dsc_ensure                          => 'Present',
+      dsc_name                            => 'windows',
+      dsc_path                            => "OU=puppet,${domaincontainer}",
+      dsc_protectedfromaccidentaldeletion => true,
+      subscribe                           => Dsc_xadorganizationalunit['CreatePuppetOU'],
+      dsc_credential => {
+        'user'     => $user,
+        'password' => Sensitive($passw)
+      },
+  }
 
   # Lets create the OU needed for the computers.
   /*
