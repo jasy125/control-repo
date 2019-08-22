@@ -9,7 +9,7 @@ class windows_profile::domain (
   $domainmode = 'WinThreshold',
   $domaincontainer = "dc=jsserv,dc=local",
   $oupathmaster = ['puppet','emea','amer','apac'],
-  $oupathchild = ['puppet'=>'workstation','puppet'=>'server','emea'=>'server','amer'=>'workstation','apac'=>'server'],
+  $oupathchild = [{ou => 'puppet', child =>'workstation'},{ ou=>'puppet',child=>'server'},{ou =>'emea',child =>'server'},{ou =>'amer', child =>'workstation'}{ou =>'apac', child=>'server'}],
 
 ) {
 
@@ -76,10 +76,10 @@ $oupathmaster.each | String $ou | {
   }
 }
 
-$oupathchild.each | String $top, $value | {
-  notice($top)
-  notice($value)
+$oupathchild.each | Hash $key | {
+  notice($key)
 
+/*
   dsc_xadorganizationalunit  { "Create ${value}":
       dsc_ensure                          => 'Present',
       dsc_name                            => $value,
@@ -91,7 +91,7 @@ $oupathchild.each | String $top, $value | {
         'user'     => $user,
         'password' => Sensitive($passw)
       },
-  }
+  }*/
 }
 /*
   dsc_xadorganizationalunit  {'CreateUKOU':
