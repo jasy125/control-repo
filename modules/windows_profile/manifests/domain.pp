@@ -19,19 +19,6 @@ class windows_profile::domain (
 
 ) {
 
-/*
-  $domaincontrollerfeatures = ['AD-Domain-Services','DNS']
-
-  windowsfeature { $domaincontrollerfeatures:
-    ensure => present,
-    installmanagementtools => true,
-  }
-  Import-DscResource -ModuleName PSDesiredStateConfiguration
-  Import-DscResource -ModuleName xActiveDirectory
-  Import-DscResource -ModuleName NetworkingDsc
-
-  */
-
   dsc_windowsfeature  { 'addsinstall':
             dsc_ensure => 'Present',
             dsc_name   => 'AD-Domain-Services',
