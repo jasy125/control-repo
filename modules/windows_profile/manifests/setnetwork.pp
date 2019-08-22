@@ -1,4 +1,4 @@
-class domain::setnetwork (
+class windows_profile::setnetwork (
 
   $ipadd = '10.234.1.209/8',
   $defaultgateway = '192.168.0.1',
