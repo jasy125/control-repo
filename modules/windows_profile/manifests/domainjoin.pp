@@ -1,4 +1,4 @@
-Class windows_profile::domainjoin (
+class windows_profile::domainjoin (
   $domain = "jsserv.local",
   $admin = 'admin@jsserv.local',
   $passw = 'Qu@lity!',
