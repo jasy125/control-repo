@@ -12,7 +12,7 @@ Class windows_profile::setnetwork (
 
 ) {
 
-  dsc_ipaddress {'setipaddress':
+  dsc_ipaddress { 'setipaddress':
     dsc_addressfamily  => 'IPV4',
     dsc_interfacealias => 'Ethernet',
     dsc_ipaddress      => $ipadd,
