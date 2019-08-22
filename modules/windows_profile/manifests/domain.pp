@@ -58,7 +58,6 @@ class windows_profile::domain (
         'user'     => $user,
         'password' => Sensitive($passw)
       },
-    dsc_subscribe  => Dsc_xaddomain['primaryDC'],
   }
 
   # Investigate building this recursive structure
