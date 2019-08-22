@@ -1,4 +1,4 @@
-Cfacterlass windows_profile::setnetwork (
+Class windows_profile::setnetwork (
 
   $ipadd = $fact['networking']['interfaces']['Ethernet']['ip'],
   $defaultgateway = '192.168.0.1',
