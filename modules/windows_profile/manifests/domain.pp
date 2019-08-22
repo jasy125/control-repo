@@ -61,7 +61,7 @@ class windows_profile::domain (
   }
   # Investigate building this into an array loop, build loop in order of ou top down ie layer one layer two based on layer one with key pair hash
 
-$oupathmaster.each | Array $ou | {
+$oupathmaster.each | String $ou | {
   dsc_xadorganizationalunit  { "Create ${ou}":
       dsc_ensure                          => 'Present',
       dsc_name                            => $ou,
