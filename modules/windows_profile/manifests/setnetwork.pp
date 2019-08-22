@@ -2,7 +2,8 @@ class windows_profile::setnetwork (
 
   $ipadd = $facts['networking']['interfaces']['Ethernet']['ip'],
   $defaultgateway = '192.168.0.1',
-  $dnsadd = '127.0.0.1, 8.8.8.8',
+  $dnsprimary = '127.0.0.1',
+  $dnssecondary = '8.8.8.8',
   $dnsvalidate = true,
   $firewall = { firewall => [
               { firewall => 'domain',  set => false },
@@ -15,7 +16,7 @@ class windows_profile::setnetwork (
   dsc_ipaddress { 'setipaddress':
     dsc_addressfamily  => 'IPv4',
     dsc_interfacealias => 'Ethernet',
-    dsc_ipaddress      => $ipadd,
+    dsc_ipaddress      => "${dnsprimary}, ${dnssecondary}",
   }
 
   dsc_defaultgatewayaddress {'setdefaultgateway':
