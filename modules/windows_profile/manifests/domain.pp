@@ -98,6 +98,7 @@ class windows_profile::domain (
     dsc_ensure     => 'Present',
    # subscribe      => Dsc_xwaitforaddomain['dscforestwait'],
   }
+  /*
   dsc_xgroup { 'addAdmin' :
     dsc_groupname        => 'Domain Admins',
     dsc_memberstoinclude => "${user}@${dc}",
@@ -107,7 +108,7 @@ class windows_profile::domain (
             'password' => Sensitive($passw)
     },
   }
-
+*/
   # Investigate building this recursive structure
 
 $oupathmaster.each | String $ou | {
