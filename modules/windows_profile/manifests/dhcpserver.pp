@@ -30,6 +30,7 @@ https://gallery.technet.microsoft.com/scriptcenter/xDhcpServer-PowerShell-f739cf
     dsc_state         => $state,
     dsc_ensure        => 'Present',
     dsc_addressfamily => 'IPv4',
+    dsc_scopeid       => $scopeid,
   }
 
 /*
