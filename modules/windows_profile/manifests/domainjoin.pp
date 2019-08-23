@@ -1,37 +1,43 @@
 class windows_profile::domainjoin (
-  $domain = "jsserv.local",
+  $domain = 'jsserv.local',
   $admin = 'admin@jsserv.local',
   $passw = 'Qu@lity!',
   $secure_password = false,
-  $machine_ou = "OU=server,OU=puppet,DC=jsserv,DC=local",
+  $machine_ou = 'OU=server,OU=puppet,DC=jsserv,DC=local',
+  $dnsserverip = '192.168.0.2',
 ) {
 
 #Set network default gateway to ip of the domain server first.
+dsc_dnsserveraddress {'dnsserveraddress':
+    dsc_address        => $dnsserverip,
+    dsc_interfacealias => 'Ethernet',
+    dsc_addressfamily  => 'IPv4',
+  }
 
 
 #Set Creds for creating the computer object
   $code = " \
-  \$secStr=ConvertTo-SecureString '${passw}' -AsPlainText -Force; \
-  if (-not \$?) { \
-  write-error 'Error: Unable to convert password string to a secure string'; \
-  exit 10; \
-  } \
-  \$creds=New-Object System.Management.Automation.PSCredential( '${admin}', \$secStr ); \
-  if (-not \$?) { \
-  write-error 'Error: Unable to create PSCredential object'; \
-  exit 20; \
-  } \
-  Add-Computer -DomainName '${domain}' -OUPath '${machine_ou}' -Restart -Force -Cred \$creds; \
-  if (-not \$?) { \
-  write-error 'Error: Unable to join domain'; \
-  exit 30; \
-  } \
-  exit 0"
+    \$secStr=ConvertTo-SecureString '${passw}' -AsPlainText -Force; \
+    if (-not \$?) { \
+    write-error 'Error: Unable to convert password string to a secure string'; \
+    exit 10; \
+    } \
+    \$creds=New-Object System.Management.Automation.PSCredential( '${admin}', \$secStr ); \
+    if (-not \$?) { \
+    write-error 'Error: Unable to create PSCredential object'; \
+    exit 20; \
+    } \
+    Add-Computer -DomainName '${domain}' -OUPath '${machine_ou}' -Restart -Force -Cred \$creds; \
+    if (-not \$?) { \
+    write-error 'Error: Unable to join domain'; \
+    exit 30; \
+    } \
+    exit 0"
     
   exec { 'join_domain':
-  command => $code,
-  provider => powershell,
-  logoutput => true,
-  unless => "if ((Get-WMIObject Win32_ComputerSystem).Domain -ne ${domain}) { exit 1 }",
+    command => $code,
+    provider => powershell,
+    logoutput => true,
+    unless => "if ((Get-WMIObject Win32_ComputerSystem).Domain -ne ${domain}) { exit 1 }",
   }
 }
