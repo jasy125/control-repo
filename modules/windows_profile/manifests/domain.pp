@@ -32,7 +32,7 @@ class windows_profile::domain (
             dsc_name   => 'DNS',
   }
 
-  dsc_xdnsserveraddress {'dnsserveraddress':
+  dsc_dnsserveraddress {'dnsserveraddress':
     dsc_address        => '127.0.0.1',
     dsc_interfacealias => 'Ethernet',
     dsc_adddressfamily => 'IPv4',
