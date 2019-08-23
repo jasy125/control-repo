@@ -69,11 +69,14 @@ class windows_profile::domain (
     subscribe                => Dsc_xaddomain['primaryDC'],
   }
   dsc_xaduser {'adminUser':
-    dsc_domainname                    => $dc,
-    dsc_username                      => $user,
-    dsc_password                      => { 'password' => Sensitive($passw) },
-    dsc_ensure                        => 'Present',
-    subscribe                         => Dsc_xwaitforaddomain['dscforestwait'],
+    dsc_domainname => $dc,
+    dsc_username   => $user,
+    dsc_password   => {
+            'user'     => $user,
+            'password' => Sensitive($passw)
+    },
+    dsc_ensure     => 'Present',
+    subscribe      => Dsc_xwaitforaddomain['dscforestwait'],
 
 
   }
