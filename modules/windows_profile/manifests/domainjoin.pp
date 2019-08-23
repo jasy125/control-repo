@@ -3,7 +3,7 @@ class windows_profile::domainjoin (
   $admin = 'admin@jsserv.local',
   $passw = 'Qu@lity!',
   $secure_password = false,
-  $machine_ou = "OU=windows,OU=puppet,DC=jsserv,DC=local",
+  $machine_ou = "OU=server,OU=puppet,DC=jsserv,DC=local",
 ) {
 
 #Set network default gateway to ip of the domain server first.
