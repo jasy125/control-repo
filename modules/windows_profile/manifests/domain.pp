@@ -96,9 +96,10 @@ class windows_profile::domain (
     dsc_ensure     => 'Present',
     subscribe      => Dsc_xwaitforaddomain['dscforestwait'],
   }
-  dsc_group { 'addAdmin' :
+  dsc_xgroup { 'addAdmin' :
     dsc_groupname        => 'Domain Admins',
-    dsc_memberstoinclude => "${dcnetbois}/${$user}",
+    dsc_memberstoinclude => "${user}",
+    dsc_ensure           => 'Present',
   }
 
   # Investigate building this recursive structure
