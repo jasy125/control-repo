@@ -91,7 +91,7 @@ class windows_profile::domain (
     dsc_username   => $user,
     dsc_userprincipalname => "${user}@${dc}",
     dsc_password   => {
-            'user'     => "${user}@${dc}",
+            'user'     => $user,
             'password' => Sensitive($passw)
     },
     dsc_passwordneverexpires => true,
