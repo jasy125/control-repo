@@ -35,7 +35,7 @@ class windows_profile::domain (
   dsc_dnsserveraddress {'dnsserveraddress':
     dsc_address        => '127.0.0.1',
     dsc_interfacealias => 'Ethernet',
-    dsc_adddressfamily => 'IPv4',
+    dsc_addressfamily  => 'IPv4',
     subscribe          => Dsc_windowsfeature['DNS'],
   }
 
