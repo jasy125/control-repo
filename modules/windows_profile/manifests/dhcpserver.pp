@@ -22,13 +22,13 @@ https://gallery.technet.microsoft.com/scriptcenter/xDhcpServer-PowerShell-f739cf
 
 
   dsc_xdhcpserverscope { 'dhcpscope':
-    dsc_ipstartrange => $startip,
-    dsc_ipendrange => $endip,
-    dsc_name => $scopename,
-    dsc_subnetmask => $subnetmask,
+    dsc_ipstartrange  => $startip,
+    dsc_ipendrange    => $endip,
+    dsc_name          => $scopename,
+    dsc_subnetmask    => $subnetmask,
     dsc_leaseduration => $leaseduration,
-    dsc_state => $state,
-    dsc_ensure => 'Present',
+    dsc_state         => $state,
+    dsc_ensure        => 'Present',
     dsc_addressfamily => 'IPv4',
   }
 
@@ -43,9 +43,9 @@ dsc_xdhcpserverreservation { 'serverreservations':
 */
 
   dsc_xdhcpserveroption { 'serveroption':
-    dsc_scopeid => $scopeid,
+    dsc_scopeid            => $scopeid,
     dsc_dnsserveripaddress => $dnsserverips,
-    dsc_dnsdomain => $dnsdomain,
-    dsc_ensure => 'present',
+    dsc_dnsdomain          => $dnsdomain,
+    dsc_ensure             => 'present',
   }
 }
