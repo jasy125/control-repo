@@ -20,6 +20,16 @@ https://gallery.technet.microsoft.com/scriptcenter/xDhcpServer-PowerShell-f739cf
     dsc_name   => 'DHCP',
   }
 
+  dsc_windowsfeature {'installrsatdhcp':
+    dsc_ensure => 'Present',
+    dsc_name   => 'rsat-dhcp',
+  }
+
+  dsc_xdhcpserverauthorization {'dhcpauthorization':
+    dsc_ensure => 'Present',
+  }
+
+
 
   dsc_xdhcpserverscope { 'dhcpscope':
     dsc_ipstartrange  => $startip,
@@ -43,13 +53,5 @@ dsc_xdhcpserverreservation { 'serverreservations':
   dsc_ensure =>
 }
 
-
-  dsc_xdhcpserveroption { 'serveroption':
-    dsc_scopeid            => $scopeid,
-    dsc_dnsserveripaddress => $dnsserverips,
-    dsc_dnsdomain          => $dnsdomain,
-    dsc_ensure             => 'present',
-    subscribe              => Dsc_xdhcpserverscope['dhcpscope'],
-  }
   */
 }
