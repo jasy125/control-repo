@@ -46,6 +46,7 @@ class windows_profile::domain (
     dsc_forestmode                    => $forestmode,
     dsc_domainmode                    => $domainmode,
     dsc_logpath                       => $dclogpath,
+    dsc_ensure                        => 'Present',
 
     dsc_domainadministratorcredential => {
             'user'     => $user,
