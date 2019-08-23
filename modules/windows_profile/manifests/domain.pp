@@ -1,5 +1,5 @@
 class windows_profile::domain (
-  $user = 'admin',
+  $user = 'Admin',
   $passw = 'Qu@lity!',
   $dc = 'jsserv.local',
   $dcnetbois = 'jsservlocal',
@@ -100,6 +100,10 @@ class windows_profile::domain (
     dsc_groupname        => 'Domain Admins',
     dsc_memberstoinclude => "${user}",
     dsc_ensure           => 'Present',
+    dsc_credential       => {
+            'user'     => $user,
+            'password' => Sensitive($passw)
+    },
   }
 
   # Investigate building this recursive structure
