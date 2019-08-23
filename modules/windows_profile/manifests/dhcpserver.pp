@@ -41,7 +41,7 @@ https://gallery.technet.microsoft.com/scriptcenter/xDhcpServer-PowerShell-f739cf
     dsc_ensure        => 'Present',
     dsc_addressfamily => 'IPv4',
     dsc_scopeid       => $scopeid,
-    subscribe         => dsc_xdhcpserverauthorization['dhcpauthorization'],
+    subscribe         => Dsc_xdhcpserverauthorization['dhcpauthorization'],
   }
 
 /*
