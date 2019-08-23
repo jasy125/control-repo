@@ -56,7 +56,6 @@ class windows_profile::domain (
             'user'     => $user,
             'password' => Sensitive($passw)
     },
-    unless => "if ((Get-WMIObject Win32_ComputerSystem).Domain -ne ${domain}) { exit 1 }",
   }
 
   dsc_xwaitforaddomain {'dscforestwait':
@@ -78,8 +77,6 @@ class windows_profile::domain (
     },
     dsc_ensure     => 'Present',
     subscribe      => Dsc_xwaitforaddomain['dscforestwait'],
-
-
   }
   dsc_group { 'addAdmin' :
     dsc_groupname        => 'Domain Admins',
@@ -95,7 +92,7 @@ $oupathmaster.each | String $ou | {
       dsc_path                            => $domaincontainer,
       dsc_description                     => "Top Level OU - ${ou}",
       dsc_protectedfromaccidentaldeletion => true,
-      #subscribe                           => Dsc_xaddomain['primaryDC'],
+      subscribe                           => Dsc_xaddomain['primaryDC'],
       dsc_credential                      => {
         'user'     => $user,
         'password' => Sensitive($passw)
