@@ -1,5 +1,5 @@
 class windows_profile::domain (
-  $user = 'admin',
+  $user = 'Admin',
   $passw = 'Qu@lity!',
   $dc = 'jsserv.local',
   $dcnetbois = 'jsservlocal',
@@ -17,7 +17,9 @@ class windows_profile::domain (
   }
 
 ) {
-
+/*
+   Install the Windows Features required for Domain Controller, AD Domain Services, AD Tools and DNS
+*/
   dsc_windowsfeature { 'addsinstall':
             dsc_ensure => 'Present',
             dsc_name   => 'AD-Domain-Services',
@@ -32,12 +34,20 @@ class windows_profile::domain (
             dsc_name   => 'DNS',
   }
 
+  /*
+    Set the dns server address to be its loopback address
+  */
+
   dsc_dnsserveraddress {'dnsserveraddress':
     dsc_address        => '127.0.0.1',
     dsc_interfacealias => 'Ethernet',
     dsc_addressfamily  => 'IPv4',
     subscribe          => Dsc_windowsfeature['DNS'],
   }
+
+  /*
+    Build the Primary DC and set the mode and paths etc
+  */
 
   dsc_xaddomain { 'primaryDC':
     subscribe                         => Dsc_windowsfeature['addsinstall'],
@@ -58,6 +68,10 @@ class windows_profile::domain (
     },
   }
 
+  /*
+    Wait for the DC Forest to be built and completed
+  */
+
   dsc_xwaitforaddomain {'dscforestwait':
     dsc_domainname           => $dc,
     dsc_domainusercredential => {
@@ -66,23 +80,35 @@ class windows_profile::domain (
     },
     dsc_retrycount           => '10',
     dsc_retryintervalsec     => '60',
+    dsc_rebootretrycount     => '2',
     subscribe                => Dsc_xaddomain['primaryDC'],
   }
+  /*
+    Make sure our user is a domain admin
+  */
   dsc_xaduser {'adminUser':
     dsc_domainname => $dc,
     dsc_username   => $user,
+    dsc_userprincipalname => "${user}@${dc}",
     dsc_password   => {
             'user'     => $user,
             'password' => Sensitive($passw)
     },
+    dsc_passwordneverexpires => true,
     dsc_ensure     => 'Present',
-    subscribe      => Dsc_xwaitforaddomain['dscforestwait'],
+   # subscribe      => Dsc_xwaitforaddomain['dscforestwait'],
   }
-  dsc_group { 'addAdmin' :
+  /*
+  dsc_xgroup { 'addAdmin' :
     dsc_groupname        => 'Domain Admins',
-    dsc_memberstoinclude => "${dcnetbois}/admin",
+    dsc_memberstoinclude => "${user}@${dc}",
+    dsc_ensure           => 'Present',
+    dsc_credential       => {
+            'user'     => $user,
+            'password' => Sensitive($passw)
+    },
   }
-
+*/
   # Investigate building this recursive structure
 
 $oupathmaster.each | String $ou | {
@@ -150,9 +176,9 @@ $oupathchild[child].each | $key | {
     }
 
 */
-/*
+
   reboot {'dsc_reboot':
       message => 'DSC has requested a reboot',
       when => pending,
-  }*/
+  }
 }
