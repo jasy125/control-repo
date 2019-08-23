@@ -151,9 +151,9 @@ $oupathchild[child].each | $key | {
     }
 
 */
-/*
+
   reboot {'dsc_reboot':
       message => 'DSC has requested a reboot',
       when => pending,
-  }*/
+  }
 }
