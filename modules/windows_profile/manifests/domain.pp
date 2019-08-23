@@ -66,7 +66,7 @@ class windows_profile::domain (
     },
     dsc_retrycount           => '10',
     dsc_retryintervalsec     => '60',
-    subscribe                => Dsc_xaddomain['primaryDC']
+    subscribe                => Dsc_xaddomain['primaryDC'],
   }
   dsc_xaduser {'adminUser':
     dsc_domainname                    => $dc,
