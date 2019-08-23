@@ -56,6 +56,7 @@ class windows_profile::domain (
             'user'     => $user,
             'password' => Sensitive($passw)
     },
+    unless => "if ((Get-WMIObject Win32_ComputerSystem).Domain -ne ${domain}) { exit 1 }",
   }
 
   dsc_xwaitforaddomain {'dscforestwait':
