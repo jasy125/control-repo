@@ -32,6 +32,13 @@ class windows_profile::domain (
             dsc_name   => 'DNS',
   }
 
+  dsc_xdnsserveraddress {'dnsserveraddress':
+    dsc_address        => '127.0.0.1',
+    dsc_interfacealias => 'Ethernet',
+    dsc_adddressfamily => 'IPv4',
+    subscribe          => Dsc_windowsfeature['DNS'],
+  }
+
   dsc_xaddomain { 'primaryDC':
     subscribe                         => Dsc_windowsfeature['addsinstall'],
     dsc_domainname                    => $dc,
@@ -51,6 +58,29 @@ class windows_profile::domain (
     },
   }
 
+  dsc_xwaitforaddomain {'dscforestwait':
+    dsc_domainname           => $dc,
+    dsc_domainusercredential => {
+            'user'     => $user,
+            'password' => Sensitive($passw)
+    },
+    dsc_retrycount           => '10',
+    dsc_retryintervalsec     => '60',
+    subscribe                => Dsc_xaddomain['primaryDC']
+  }
+  dsc_xaduser {'adminUser':
+    dsc_domainname                    => $dc,
+    dsc_domainadministratorcredential => {
+            'user'     => $user,
+            'password' => Sensitive($passw)
+    },
+    dsc_username                      => $user,
+    dsc_password                      => $passw,
+    dsc_ensure                        => 'Present',
+    subscribe                         => Dsc_xwaitforaddomain['dscforestwait'],
+
+
+  }
   dsc_group { 'addAdmin' :
     dsc_groupname        => 'Domain Admins',
     dsc_memberstoinclude => "${dcnetbois}/admin",
