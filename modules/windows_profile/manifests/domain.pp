@@ -70,10 +70,6 @@ class windows_profile::domain (
   }
   dsc_xaduser {'adminUser':
     dsc_domainname                    => $dc,
-    dsc_domainadministratorcredential => {
-            'user'     => $user,
-            'password' => Sensitive($passw)
-    },
     dsc_username                      => $user,
     dsc_password                      => $passw,
     dsc_ensure                        => 'Present',
