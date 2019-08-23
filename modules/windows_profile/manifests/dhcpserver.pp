@@ -42,7 +42,7 @@ dsc_xdhcpserverreservation { 'serverreservations':
   dsc_name =>
   dsc_ensure =>
 }
-*/
+
 
   dsc_xdhcpserveroption { 'serveroption':
     dsc_scopeid            => $scopeid,
@@ -51,4 +51,5 @@ dsc_xdhcpserverreservation { 'serverreservations':
     dsc_ensure             => 'present',
     subscribe              => Dsc_xdhcpserverscope['dhcpscope'],
   }
+  */
 }
