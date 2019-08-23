@@ -16,7 +16,7 @@ class windows_profile::setnetwork (
   dsc_ipaddress { 'setipaddress':
     dsc_addressfamily  => 'IPv4',
     dsc_interfacealias => 'Ethernet',
-    dsc_ipaddress      => "${dnsprimary}, ${dnssecondary}",
+    dsc_ipaddress      => "${ipadd}",
   }
 
   dsc_defaultgatewayaddress {'setdefaultgateway':
@@ -26,7 +26,7 @@ class windows_profile::setnetwork (
   }
 
   dsc_dnsserveraddress {'setdns':
-    dsc_address        => $dnsadd,
+    dsc_address        => "${dnsprimary}, ${dnssecondary}",
     dsc_interfacealias => 'Ethernet',
     dsc_addressfamily  => 'IPv4',
     dsc_validate       => $dnsvalidate,
