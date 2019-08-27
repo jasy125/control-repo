@@ -78,7 +78,7 @@ class windows_profile::domain (
             'user'     => $user,
             'password' => Sensitive($passw)
     },
-    dsc_retrycount           => '10',
+    dsc_retrycount           => '5',
     dsc_retryintervalsec     => '60',
     dsc_rebootretrycount     => '2',
     subscribe                => Dsc_xaddomain['primaryDC'],
