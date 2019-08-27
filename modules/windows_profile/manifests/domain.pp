@@ -85,7 +85,7 @@ class windows_profile::domain (
   }
 
   /*
-    Make sure our user is a domain admin
+    Make sure our user exists
   */
   dsc_xaduser {'adminUser':
     dsc_domainname           => $dc,
@@ -143,43 +143,6 @@ $oupathchild[child].each | $key | {
       },
   }
 }
-/*
- #Lets create the OU needed for the computers.
-  dsc_xadorganizationalunit  {'CreateUKOU':
-      dsc_ensure                          => 'Present',
-      dsc_name                            => 'uk',
-      dsc_path                            => $domaincontainer,
-      dsc_description                     => 'Top Level OU',
-      dsc_protectedfromaccidentaldeletion => true,
-      subscribe                           => Dsc_xaddomain['primaryDC'],
-      dsc_credential                      => {
-        'user'     => $user,
-        'password' => Sensitive($passw)
-      },
-  }
-
-  dsc_xadorganizationalunit  {'CreateServersOU':
-      dsc_ensure                          => 'Present',
-      dsc_name                            => 'servers',
-      dsc_path                            => "OU=UK,${domaincontainer}",
-      dsc_protectedfromaccidentaldeletion => true,
-      subscribe                           => Dsc_xadorganizationalunit['CreateUKOU'],
-      dsc_credential                      => {
-        'user'     => $user,
-        'password' => Sensitive($passw)
-      },
-
-   xWaitForADDomain 'WaitForDomainInstall' {
-      DomainName = $Node.DomainName;
-      DomainUserCredential = $DomainCredential;
-      RebootRetryCount = 2;
-      RetryCount = 10;
-      RetryIntervalSec = 60;
-      DependsOn = '[xADDomain]ADDomainInstall';
-    }
-
-*/
-
   reboot {'dsc_reboot':
       message => 'DSC has requested a reboot',
       when => pending,
