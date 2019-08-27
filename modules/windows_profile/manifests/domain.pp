@@ -96,7 +96,7 @@ class windows_profile::domain (
     },
     dsc_passwordneverexpires => true,
     dsc_ensure     => 'Present',
-   # subscribe      => Dsc_xwaitforaddomain['dscforestwait'],
+    subscribe      => Dsc_xwaitforaddomain['dscforestwait'],
   }
   /*
   dsc_xgroup { 'addAdmin' :

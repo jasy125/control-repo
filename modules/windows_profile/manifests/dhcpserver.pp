@@ -29,7 +29,10 @@ https://gallery.technet.microsoft.com/scriptcenter/xDhcpServer-PowerShell-f739cf
     dsc_ensure => 'Present',
   }
 
-
+  exec {'dhcpauthor':
+    command  => "Add-DhcpServerinDC",
+    provider => powershell,
+  }
 
   dsc_xdhcpserverscope { 'dhcpscope':
     dsc_ipstartrange  => $startip,
