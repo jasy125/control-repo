@@ -100,6 +100,7 @@ class windows_profile::domain (
     subscribe                => Dsc_xwaitforaddomain['dscforestwait'],
   }
 
+/*
   dsc_xgroup { 'addAdmin' :
     dsc_groupname        => 'Domain Admins',
     dsc_memberstoinclude => "${user}@${dc}",
@@ -110,7 +111,7 @@ class windows_profile::domain (
     },
     subscribe            => Dsc_xaduser['adminUser']
   }
-
+*/
   # Investigate building this recursive structure
 
 $oupathmaster.each | String $ou | {
