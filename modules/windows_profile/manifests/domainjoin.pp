@@ -4,17 +4,18 @@ class windows_profile::domainjoin (
   $passw = 'Qu@lity!',
   $secure_password = false,
   $machine_ou = 'OU=server,OU=puppet,DC=jsserv,DC=local',
-  $dnsserverip = '192.168.0.2',
+  $dnsserverip = '192.168.0.19',
+  $compname = $facts['hostname'],
 ) {
 
 #Set network default gateway to ip of the domain server first.
-dsc_dnsserveraddress {'dnsserveraddress':
+dsc_dnsserveraddress { 'dnsserveraddress':
     dsc_address        => $dnsserverip,
     dsc_interfacealias => 'Ethernet',
     dsc_addressfamily  => 'IPv4',
   }
 
-
+/*
 #Set Creds for creating the computer object
   $code = " \
     \$secStr=ConvertTo-SecureString '${passw}' -AsPlainText -Force; \
@@ -39,5 +40,18 @@ dsc_dnsserveraddress {'dnsserveraddress':
     provider => powershell,
     logoutput => true,
     unless => "if ((Get-WMIObject Win32_ComputerSystem).Domain -ne ${domain}) { exit 1 }",
+  }
+*/
+  dsc_computer { 'joindomain':
+    dsc_name        => $compname,
+    dsc_domainname  => $domain,
+    dsc_joinou      => $machine_ou,
+    dsc_description => "Newly Joined ${compname}",
+    dsc_credential  => {
+      user     => $admin,
+      password => sensitive("${passw}")
+    },
+    unless          => "if ((Get-WMIObject Win32_ComputerSystem).Domain -ne ${domain}) { exit 1 }",
+    subscribe       => Dsc_dnsserveraddress['dnsserveraddress'],
   }
 }
