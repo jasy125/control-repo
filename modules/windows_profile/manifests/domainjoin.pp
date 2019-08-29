@@ -49,7 +49,7 @@ dsc_dnsserveraddress { 'dnsserveraddress':
     dsc_description => "Newly Joined ${compname}",
     dsc_credential  => {
       user     => $admin,
-      password => sensitive("${passw}")
+      password => Sensitive($passw)
     },
     unless          => "if ((Get-WMIObject Win32_ComputerSystem).Domain -ne ${domain}) { exit 1 }",
     subscribe       => Dsc_dnsserveraddress['dnsserveraddress'],
