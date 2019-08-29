@@ -15,7 +15,28 @@ dsc_dnsserveraddress { 'dnsserveraddress':
     dsc_addressfamily  => 'IPv4',
   }
 
+
+  dsc_computer { 'joindomain':
+    dsc_name        => $compname,
+    dsc_domainname  => $domain,
+    dsc_joinou      => $machine_ou,
+    dsc_description => "Newly Joined ${compname}",
+    dsc_credential  => {
+      user     => $admin,
+      password => Sensitive($passw)
+    },
+    subscribe       => Dsc_dnsserveraddress['dnsserveraddress'],
+  }
+
+  reboot {'dsc_reboot':
+      message => 'DSC has requested a reboot',
+      when    => pending,
+  }
+}
+
+
 /*
+ POWERSHELL CODE TO DO THIS WITH EXEC
 #Set Creds for creating the computer object
   $code = " \
     \$secStr=ConvertTo-SecureString '${passw}' -AsPlainText -Force; \
@@ -42,20 +63,3 @@ dsc_dnsserveraddress { 'dnsserveraddress':
     unless => "if ((Get-WMIObject Win32_ComputerSystem).Domain -ne ${domain}) { exit 1 }",
   }
 */
-  dsc_computer { 'joindomain':
-    dsc_name        => $compname,
-    dsc_domainname  => $domain,
-    dsc_joinou      => $machine_ou,
-    dsc_description => "Newly Joined ${compname}",
-    dsc_credential  => {
-      user     => $admin,
-      password => Sensitive($passw)
-    },
-    subscribe       => Dsc_dnsserveraddress['dnsserveraddress'],
-  }
-
-  reboot {'dsc_reboot':
-      message => 'DSC has requested a reboot',
-      when    => pending,
-  }
-}
