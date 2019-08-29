@@ -53,4 +53,9 @@ dsc_dnsserveraddress { 'dnsserveraddress':
     },
     subscribe       => Dsc_dnsserveraddress['dnsserveraddress'],
   }
+
+  reboot {'dsc_reboot':
+      message => 'DSC has requested a reboot',
+      when    => pending,
+  }
 }
