@@ -27,12 +27,34 @@ https://gallery.technet.microsoft.com/scriptcenter/xDhcpServer-PowerShell-f739cf
 
   dsc_xdhcpserverauthorization {'dhcpauthorization':
     dsc_ensure => 'Present',
+    dsc_ipaddress => '192.168.0.16',
   }
 
   exec {'dhcpauthor':
     command  => "Add-DhcpServerinDC",
     provider => powershell,
   }
+
+  /* 
+    add dhcp groups 
+  */
+
+  dsc_xgroup {'dhcpAdmins':
+    dsc_groupname   => 'DHCP Administrators',
+    dsc_ensure      => 'Present',
+    dsc_description => 'Security group for DHCP Admins',
+
+  }
+  dsc_xgroup {'dhcpUsers':
+    dsc_groupname => 'DHCP Users',
+    dsc_ensure    => 'Present',
+  }
+
+  /*
+  Restart DHCP service
+  */
+
+
 
   dsc_xdhcpserverscope { 'dhcpscope':
     dsc_ipstartrange  => $startip,

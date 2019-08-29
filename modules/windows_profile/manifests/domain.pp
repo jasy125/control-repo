@@ -83,33 +83,6 @@ class windows_profile::domain (
     dsc_rebootretrycount     => '2',
     subscribe                => Dsc_xaddomain['primaryDC'],
   }
-  /*
-    Make sure our user is a domain admin
-  */
-  dsc_xaduser {'adminUser':
-    dsc_domainname => $dc,
-    dsc_username   => $user,
-    dsc_userprincipalname => "${user}@${dc}",
-    dsc_password   => {
-            'user'     => $user,
-            'password' => Sensitive($passw)
-    },
-    dsc_passwordneverexpires => true,
-    dsc_ensure     => 'Present',
-    subscribe      => Dsc_xwaitforaddomain['dscforestwait'],
-  }
-  /*
-  dsc_xgroup { 'addAdmin' :
-    dsc_groupname        => 'Domain Admins',
-    dsc_memberstoinclude => "${user}@${dc}",
-    dsc_ensure           => 'Present',
-    dsc_credential       => {
-            'user'     => $user,
-            'password' => Sensitive($passw)
-    },
-  }
-*/
-  # Investigate building this recursive structure
 
 $oupathmaster.each | String $ou | {
   dsc_xadorganizationalunit  { "Create ${ou}":
