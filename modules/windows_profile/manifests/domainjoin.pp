@@ -51,7 +51,6 @@ dsc_dnsserveraddress { 'dnsserveraddress':
       user     => $admin,
       password => Sensitive($passw)
     },
-    unless          => "if ((Get-WMIObject Win32_ComputerSystem).Domain -ne ${domain}) { exit 1 }",
     subscribe       => Dsc_dnsserveraddress['dnsserveraddress'],
   }
 }
