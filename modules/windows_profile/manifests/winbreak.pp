@@ -1,4 +1,4 @@
-class windows_profile::windowsbase (
+class windows_profile::winbreak (
 
 ){
 
