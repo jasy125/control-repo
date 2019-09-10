@@ -1,5 +1,4 @@
 class windows_profile::windowsbase (
-$vi =true,
 ){
 /*   
  Windows Base 

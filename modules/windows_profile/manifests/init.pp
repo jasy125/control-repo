@@ -1,5 +1,4 @@
 class windows_profile {
-
-$vi = false
+  include windows_profile::windowsbase
 }
 
