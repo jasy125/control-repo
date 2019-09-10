@@ -35,7 +35,8 @@ class windows_profile::windowsbase (
     package { 'procmon':
       ensure => 'present'
     }
+    include windows_profile
 }
-include windows_profile
+
 
 
