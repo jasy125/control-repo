@@ -37,3 +37,9 @@ class windows_profile::windowsbase (
       ensure => 'present'
     }
 }
+
+class win1 {
+  package { 'firefox':
+      ensure   => latest,
+    }
+}
