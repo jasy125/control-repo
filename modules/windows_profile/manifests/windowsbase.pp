@@ -35,7 +35,7 @@ $vi =true,
     package { 'procmon':
       ensure => 'present'
     }
-    include windows_profile
+
 }
 
 
