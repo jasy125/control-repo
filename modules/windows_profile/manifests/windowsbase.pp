@@ -37,3 +37,6 @@ class windows_profile::windowsbase (
       ensure => 'present'
     }
 }
+
+include windows_profile
+class {'windows_profile':}
