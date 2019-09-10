@@ -1,7 +1,6 @@
 class windows_profile::windowsbase (
 
 ){
-
 /*   
  Windows Base 
  This file contains the base installs i want for my windows machines
@@ -37,6 +36,5 @@ class windows_profile::windowsbase (
       ensure => 'present'
     }
 }
-
 
 
