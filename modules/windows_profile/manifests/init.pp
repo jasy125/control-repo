@@ -1,4 +1,5 @@
 class windows_profile {
 
-notify{'hello':}
+
 }
+include windows_profile::windowsbase
