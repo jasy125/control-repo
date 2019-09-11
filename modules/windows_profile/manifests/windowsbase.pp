@@ -1,6 +1,6 @@
 class windows_profile::windowsbase (
 ){
-/*   
+/*
  Windows Base 
  This file contains the base installs i want for my windows machines
  Installs Packages - uses chocolatey packages
@@ -34,7 +34,6 @@ class windows_profile::windowsbase (
     package { 'procmon':
       ensure => 'present'
     }
-
 }
 
 
