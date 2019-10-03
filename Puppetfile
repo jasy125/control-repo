@@ -57,5 +57,5 @@ mod 'gms',
 
 mod 'puppet-vra_puppet_plugin_prep',
   :git => 'git@github.com:jasy125/puppet-vra_puppet_plugin_prep.git',
-  :tag => '0.1.4'
+  :tag => '0.1.0'
 
