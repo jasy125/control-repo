@@ -54,3 +54,8 @@ mod 'gms',
 #  :git    => 'https://github.com/puppetlabs/pltraining-rbac',
 #  :ref    => '9a823ff42810988f80a2b65738054a816620d972'
 
+
+mod 'puppet-vra_puppet_plugin_prep',
+  :git => 'git@github.com:jasy125/puppet-vra_puppet_plugin_prep.git',
+  :tag => '0.1.0'
+
