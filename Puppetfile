@@ -5,7 +5,7 @@ forge "http://forge.puppetlabs.com"
 mod "puppetlabs/inifile",     '1.6.0'
 mod "puppet/hiera",           '2.4.0'
 mod "npwalker/pe_code_manager_webhook",  '2.0.1'
-mod "npwalker/pe_metric_curl_cron_jobs", '4.0.0'
+#mod "npwalker/pe_metric_curl_cron_jobs", '4.0.0'
 mod 'puppet-healthcheck', '1.0.0'
 
 #Puppet Agent Module
