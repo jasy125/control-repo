@@ -30,6 +30,7 @@ mod 'puppetlabs-windows', '6.1.0'
 mod 'puppetlabs-win_desktop_shortcut', '0.0.4'
 mod 'puppetlabs-acl', '2.1.0'
 mod 'puppetlabs-reboot', '2.2.0'
+mod 'puppetlabs-support_tasks', '1.0.9'
 
 #Windows Domain Setup
 mod 'puppetlabs-dsc', '1.9.2'
@@ -53,8 +54,3 @@ mod 'gms',
 #mod 'pltraining-rbac',
 #  :git    => 'https://github.com/puppetlabs/pltraining-rbac',
 #  :ref    => '9a823ff42810988f80a2b65738054a816620d972'
-
-
-mod 'puppet-vra_puppet_plugin_prep',
-  :git => 'git@10.16.113.59:root/puppet-vra_puppet_plugin_prep.git'
-
