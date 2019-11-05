@@ -30,6 +30,7 @@ mod 'puppetlabs-windows', '6.1.0'
 mod 'puppetlabs-win_desktop_shortcut', '0.0.4'
 mod 'puppetlabs-acl', '2.1.0'
 mod 'puppetlabs-reboot', '2.2.0'
+
 mod 'puppetlabs-support_tasks', '1.0.8'
 
 #Windows Domain Setup
