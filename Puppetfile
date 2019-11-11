@@ -37,7 +37,7 @@ mod 'puppet-windowsfeature', '3.2.2'
 
 #plex mods linux
 mod 'WhatsARanjit-plexmediaserver', '2.2.0'
-mod 'nanliu-staging', '1.0.3'
+#mod 'nanliu-staging', '1.0.3'
 
 # Modules from Github using various references
 # Further examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
@@ -46,9 +46,9 @@ mod 'nanliu-staging', '1.0.3'
 #  :git => 'https://github.com/npwalker/pe_code_manager_webhook',
 #  :ref => '9e167154b146901d7cfd3e67dc70e984796da03f'
 
-mod 'gms',
-  :git    => 'https://github.com/abrader/abrader-gms',
-  :ref    => 'a5105e95cf0f8b84a143d7a69a83e3ff3d4e02fb'
+#mod 'gms',
+#  :git    => 'https://github.com/abrader/abrader-gms',
+#  :ref    => 'a5105e95cf0f8b84a143d7a69a83e3ff3d4e02fb'
 
 #mod 'pltraining-rbac',
 #  :git    => 'https://github.com/puppetlabs/pltraining-rbac',
