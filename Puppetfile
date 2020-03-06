@@ -55,3 +55,6 @@ mod 'gms',
 #mod 'pltraining-rbac',
 #  :git    => 'https://github.com/puppetlabs/pltraining-rbac',
 #  :ref    => '9a823ff42810988f80a2b65738054a816620d972'
+
+mod 'puppetie',
+   :git => 'https://github.com/jasy125/puppetie/blob/master/pdkmods/windowstasks/'
