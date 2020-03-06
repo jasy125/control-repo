@@ -6,10 +6,5 @@
 #   include linux_profile::master
 class linux_profile::master {
 
-  file_line { 'add_LANG':
-      path => '/etc/sysconfig/pe-puppetserver',
-      line => 'LANG=en_US.UTF-8',
-      ensure => present,
-      notify => Service['pe-puppetserver'],
-    }
+
 }
