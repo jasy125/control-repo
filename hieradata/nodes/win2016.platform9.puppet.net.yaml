@@ -1,0 +1,13 @@
+---
+    message: "This is my master using hieradata/node"
+    
+    profile::windows::scheduledtask::scheduledtask:
+        'task_puppet_agent':
+          dsc_ensure: 'present'
+          dsc_taskname: 'puppet_agent'
+          dsc_enable: true
+          dsc_actionexecutable: 'c:\puppet_agent.bat'
+          dsc_actionworkingpath: 'c:\'
+          dsc_scheduletype: 'daily'
+          dsc_repeatinterval: '01:00:00'
+          dsc_repetitionduration: 'indefinitely'

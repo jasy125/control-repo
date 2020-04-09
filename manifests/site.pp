@@ -31,6 +31,11 @@ node default {
   #   class { 'my_class': }
 }
 
+node 'win2016.platform9.puppet.net' {
+  notify { "running man": }
+}
+
+
 case $operatingsystem {
   'windows': {
     Package { provider => chocolatey, }
