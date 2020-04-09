@@ -33,6 +33,16 @@ node default {
 
 node 'win2016.platform9.puppet.net' {
   notify { "running man": }
+
+  class profile::windows::scheduledtask (
+    Hash $scheduledtask = {},
+    ) {
+      $scheduledtask.each | $_k, $_v | {
+        dsc_scheduledtask { $_k:
+          * => $_v,
+        }
+      }
+    }
 }
 
 
