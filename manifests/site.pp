@@ -30,12 +30,6 @@ node default {
   # Example:
   #   class { 'my_class': }
 }
-
-
-node 'win2016.platform9.puppet.net' {
-
-  notify { "running man": }
-
   class mytest (
   Hash $scheduledtask = {},
   ) {
@@ -46,6 +40,9 @@ node 'win2016.platform9.puppet.net' {
       }
     }
 
+node 'win2016.platform9.puppet.net' {
+ 
+  notify { "running man": }
 
   class { 'mytest':}
 }
