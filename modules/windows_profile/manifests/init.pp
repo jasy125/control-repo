@@ -1,3 +1,2 @@
 class windows_profile {
 }
-
