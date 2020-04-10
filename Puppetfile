@@ -30,6 +30,7 @@ mod 'puppetlabs-windows', :latest
 mod 'puppetlabs-win_desktop_shortcut', :latest
 mod 'puppetlabs-acl', :latest
 mod 'puppetlabs-reboot', :latest
+mod 'puppetlabs-pwshlib', :latest
 
 #Windows Domain Setup
 mod 'puppetlabs-dsc', '1.9.2'
