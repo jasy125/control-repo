@@ -13,9 +13,9 @@ forge "http://forge.puppetlabs.com"
 
 # Requirements for cd4pe
 mod 'puppetlabs-cd4pe', :latest
-#mod 'puppetlabs-concat', '4.2.1'
-#mod 'puppetlabs-hocon', '1.0.1'
-#mod 'puppetlabs-stdlib', '4.25.1'
+mod 'puppetlabs-concat', :latest
+mod 'puppetlabs-hocon', :latest
+mod 'puppetlabs-stdlib', :latest
 #mod 'puppetlabs-puppet_authorization', '0.5.0'
 #mod 'puppetlabs-docker', '3.3.0'
 #mod 'puppetlabs-translate', '1.1.0'
@@ -24,12 +24,12 @@ mod 'puppetlabs-cd4pe', :latest
 
 #windows mods
 mod 'puppetlabs-chocolatey', :latest
-mod 'puppetlabs-registry', '2.0.1'
-mod 'puppetlabs-powershell', '2.3.0'
-mod 'puppetlabs-windows', '6.1.0'
-mod 'puppetlabs-win_desktop_shortcut', '0.0.4'
-mod 'puppetlabs-acl', '2.1.0'
-mod 'puppetlabs-reboot', '2.2.0'
+mod 'puppetlabs-registry', :latest
+mod 'puppetlabs-powershell', :latest
+mod 'puppetlabs-windows', :latest
+mod 'puppetlabs-win_desktop_shortcut', :latest
+mod 'puppetlabs-acl', :latest
+mod 'puppetlabs-reboot', :latest
 
 #Windows Domain Setup
 mod 'puppetlabs-dsc', '1.9.2'
