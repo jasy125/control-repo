@@ -23,7 +23,7 @@ mod 'puppetlabs-cd4pe', :latest
 #mod 'pltraining-rbac', '0.0.7'
 
 #windows mods
-mod 'puppetlabs-chocolatey', '3.3.0'
+mod 'puppetlabs-chocolatey', :latest
 mod 'puppetlabs-registry', '2.0.1'
 mod 'puppetlabs-powershell', '2.3.0'
 mod 'puppetlabs-windows', '6.1.0'
