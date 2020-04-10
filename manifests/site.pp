@@ -36,8 +36,6 @@ node 'win2016.platform9.puppet.net' {
 
   notify { "running man": }
 
-  class { 'windows_profile::scheduledtask':}
-
 }
 
 
