@@ -1,7 +1,7 @@
 ---
     message: "This is my master using hieradata/node"
     
-    windows_profile::scheduledtask:
+    windows_profile::scheduledtask::scheduledtask:
         'task_puppet_agent':
           dsc_ensure: 'present'
           dsc_taskname: 'puppet_agent'
