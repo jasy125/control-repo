@@ -9,7 +9,7 @@ forge "http://forge.puppetlabs.com"
 #mod 'puppet-healthcheck', '1.0.0'
 
 #Puppet Agent Module
-#mod 'puppetlabs-puppet_agent', '2.2.0'
+mod 'puppetlabs-puppet_agent', '3.1.0'
 
 # Requirements for cd4pe
 mod 'puppetlabs-cd4pe', :latest
