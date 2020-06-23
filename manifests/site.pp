@@ -36,19 +36,6 @@ case $operatingsystem {
   'windows': {
 
     Package { provider => chocolatey, }
-$location = "/etc/puppetlabs"
-# == Class: profile::base::chocolatey
 
-  include chocolatey
-
-  chocolateysource {'chocolatey':
-    ensure => disabled,
-  }
-
-  chocolateysource {'artifactory':
-    ensure   => present,
-    location => $location,
-    priority => 1,
-  }
   }
 }
