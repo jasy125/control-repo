@@ -16,11 +16,16 @@ mod 'puppetlabs-cd4pe', :latest
 mod 'puppetlabs-concat', :latest
 mod 'puppetlabs-hocon', :latest
 mod 'puppetlabs-stdlib', :latest
-#mod 'puppetlabs-puppet_authorization', '0.5.0'
-#mod 'puppetlabs-docker', '3.3.0'
-#mod 'puppetlabs-translate', '1.1.0'
-#mod 'puppetlabs-apt', '6.2.1'
+mod 'puppetlabs-puppet_authorization', :latest
+mod 'puppetlabs-docker', :latest
+mod 'puppetlabs-translate', :latest
+mod 'puppetlabs-apt', :latest
 #mod 'pltraining-rbac', '0.0.7'
+mod 'puppetlabs-cd4pe_jobs', :latest
+mod 'puppetlabs-pipelines', :latest
+
+
+
 
 #windows mods
 mod 'puppetlabs-chocolatey', :latest
