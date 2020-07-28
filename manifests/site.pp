@@ -34,7 +34,7 @@ node default {
 
 node 'plain-playing.delivery.puppetlabs.net'{
 
-notify {"hello": "hi there"}
+notify {"hello":}
 
 
 }
