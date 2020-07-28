@@ -31,6 +31,15 @@ node default {
   #   class { 'my_class': }
 }
 
+notify { "here": }
+node 'plain-playing.delivery.puppetlabs.net'{
+
+notify {"hello":}
+
+class {'::puppet_agent':
+  package_version => '1.4.0',
+}
+}
 
 case $operatingsystem {
   'windows': {
