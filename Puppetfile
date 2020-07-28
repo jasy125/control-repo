@@ -16,6 +16,8 @@ mod 'puppetlabs-cd4pe', :latest
 mod 'puppetlabs-concat', :latest
 mod 'puppetlabs-hocon', :latest
 mod 'puppetlabs-stdlib', :latest
+mod 'puppetlabs-inifile', :latest
+mod 'puppetlabs-facts', :latest
 mod 'puppetlabs-puppet_authorization', :latest
 mod 'puppetlabs-docker', :latest
 mod 'puppetlabs-translate', :latest
