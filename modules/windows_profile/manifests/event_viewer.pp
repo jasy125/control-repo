@@ -1,5 +1,5 @@
 class windows_profile::event_viewer (
-  String $log_folder = lookup('profile::windows_base::event_viewer::log_folder', {'default_value' => 'C:\\Config' }),
+  $log_folder = 'C:\\Config',
 ) {
   # Creamos el directorio para albergar los logs
   file { 'log folder':
