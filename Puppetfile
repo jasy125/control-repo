@@ -7,6 +7,7 @@ forge "http://forge.puppetlabs.com"
 #mod "npwalker/pe_code_manager_webhook",  '2.0.1'
 #mod "npwalker/pe_metric_curl_cron_jobs", '4.0.0'
 #mod 'puppet-healthcheck', '1.0.0'
+mod 'puppetlabs-puppet_metrics_dashboard', '2.3.1'
 
 #Puppet Agent Module
 mod 'puppetlabs-puppet_agent', '4.0.0'
