@@ -20,7 +20,13 @@ class windows_profile::event_viewer (
       data  => "Hello World!",
   }
 
-  registry::value { 'PagingFiles':
+  registry::value { 'Set pagefile':
+      key  => 'HKLM:\\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PagingFiles',
+      data  => ['c:\pagefile.sys 0 0','h:\pagefile.sys 4010 4050'],
+      type => 'array',
+  }
+
+    registry::value { 'PagingFiles':
       key  => 'HKLM:\\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PagingFiles',
       data  => ['c:\pagefile.sys 300 300','h:\pagefile.sys 4000 4050'],
       type => 'array',
