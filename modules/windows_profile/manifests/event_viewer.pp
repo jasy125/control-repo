@@ -13,5 +13,17 @@ class windows_profile::event_viewer (
     data  => "${log_folder}\Application.evtx",
     type  => 'expand',
   }
+
+  registry::value { 'Setting0':
+      key   => 'HKLM\System\CurrentControlSet\Services\Puppet',
+      value => '(default)',
+      data  => "Hello World!",
+  }
+
+  registry::value { 'Set pagefile':
+      key  => 'HKLM:\\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PagingFiles',
+      data  => ['c:\pagefile.sys 300 300','h:\pagefile.sys 4000 4050'],
+      type => 'array',
+  }
 }
 
