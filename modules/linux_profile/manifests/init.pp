@@ -4,6 +4,12 @@
 #
 # @example
 #   include linux_profile
-class linux_profile {
+class linux_profile (
+  $mytest = 'cantfind',
+) {
+
+  $mytest = $my::test
+
+  notify {'$mytest1' :}
 
 }
