@@ -1,7 +1,7 @@
 class linux_profile::test (
 ){
 
-$mytest = $linux_profile::test::test
+$mytest = "$linux_profile::test"
 
-  notify{ "My test ${mytest}" :}
+  notify{ "$mytest" :}
 }
