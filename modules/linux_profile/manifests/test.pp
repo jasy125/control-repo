@@ -1,5 +1,5 @@
 class linux_profile::test (
-  $mytest = 'notfound',
+  $mytest,
 ){
 
 $mytest = $linux_profile::test
