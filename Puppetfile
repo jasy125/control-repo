@@ -11,6 +11,7 @@ forge "http://forge.puppetlabs.com"
 
 #Puppet Agent Module
 mod 'puppetlabs-puppet_agent', '4.0.0'
+mod 'puppetlabs-ntp', '8.4.0'
 
 #Support Tasks
 mod 'puppetlabs-support_tasks', '1.1.2'
