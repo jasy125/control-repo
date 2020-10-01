@@ -1,5 +1,4 @@
 class linux_profile::test (
-  $mytest,
 ){
 
 $mytest = $linux_profile::test
