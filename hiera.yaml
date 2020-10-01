@@ -8,3 +8,5 @@ hierarchy:
   - name: "Per-node data"                   # Human-readable name.
     path: "nodes/%{trusted.certname}.yaml"  # File path, relative to datadir.
                                    # ^^^ IMPORTANT: include the file extension!
+  - name: "Default"
+    path: "common.yaml"                                 
