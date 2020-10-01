@@ -10,3 +10,7 @@ puppet_enterprise::master::code_manager::manage_private_key: false
 #disable classifier scheduled sync and rely on r10k postrun command to sync the classes
 puppet_enterprise::profile::console::classifier_synchronization_period: 0
 
+my::test:
+    - value1
+    - value2
+    - value3
