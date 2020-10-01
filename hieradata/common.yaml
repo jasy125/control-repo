@@ -14,3 +14,9 @@ my::test:
     - value1
     - value2
     - value3
+    - Next:
+        - next1
+        - next2
+        - onemore:
+            - one1
+            - one2
