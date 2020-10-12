@@ -75,3 +75,4 @@ mod 'puppet-windowsfeature', '3.2.2'
 mod 'puppetie',
    :git => 'https://github.com/jasy125/puppetie'
   
+mod 'saz-sudo', '5.0.0'
